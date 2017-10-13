@@ -1,13 +1,13 @@
-name: Your New Jekyll Site
-description: Blogging about stuffs
-meta_description: "Your New Jekyll Site, Blogging about stuffs"
+name: Picking pearls
+description: "Esempi di utilizzo di Pickup, il Manufacturing execution system (MES) di Esolver - Sistemi"
+meta_description: "Blogging about Pickup MES"
 
 markdown: kramdown
 highlighter: pygments
 logo: false
 paginate: 15
 baseurl: /pickup
-domain_name: 'http://yourblog-domain.com'
+domain_name: 'https://mdm13.github.com/pickup'
 google_analytics: 'UA-XXXXXXXX-X'
 gems: [jekyll-paginate]
 
