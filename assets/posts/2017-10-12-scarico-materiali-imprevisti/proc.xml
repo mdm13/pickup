@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Pickup>
+	<Versione>
+		<Versione>42.31.14</Versione>
+		<DataVersione>2017-10-04</DataVersione>
+		<OraVersione>1424</OraVersione>
+		<DescrizioneVersione>Adeguamento configurazione videata</DescrizioneVersione>
+	</Versione>
+	<ElencoProcessi>
+		<Processo>
+			<CodPro>81</CodPro>
+			<Versione>3.2</Versione>
+			<DesProcesso>MATERIALE IMPREVISTO</DesProcesso>
+			<DesEstesaProcesso>Scarico di materiale non previsto con riferimento a riga ODP; attenzione al tipo operazione AVP, con Tipo Avanzamento=&quot;Movimentazione materiali&quot;, Movimentazione materiali=&quot;Scarico&quot; e Tipo imputazione rif. ordine=&quot;Riga composto&quot;.</DesEstesaProcesso>
+			<CodCategoria>2</CodCategoria>
+			<Modulo>2</Modulo>
+			<GruppoDocumento>AVP</GruppoDocumento>
+			<FirmaUltVarData>2017-10-03</FirmaUltVarData>
+			<FirmaUltVarOra>142928</FirmaUltVarOra>
+			<FirmaUltVarStazione>A7</FirmaUltVarStazione>
+			<FirmaUltVarOperatore>SARA</FirmaUltVarOperatore>
+			<StatoOrdineSped>2</StatoOrdineSped>
+			<CodiceVariazione>V01</CodiceVariazione>
+			<FileImmagine>Materiali_02.png</FileImmagine>
+			<ElencoAttivita>
+				<Attivita>
+					<CodPro>81</CodPro>
+					<Attivita>5</Attivita>
+					<Des>SELEZIONE RISORSA</Des>
+					<CodQuery>831</CodQuery>
+					<NomeDFX>ERISPROD</NomeDFX>
+					<Query>SELECT 
+RisorseProdutAnag.CodRisorsaProd BCVOUT[RIPRACRISP$],  
+RisorseProdutAnag.Des BCVOUT[RIPRADES], 
+RisorseProdutAnag.TipoRisorsaProd BCVOUT[RIPRATRIS]
+ 
+FROM RisorseProdutAnag  
+ 
+WHERE RisorseProdutAnag.DBGruppo=BCVIN[GR$] AND  
+(TipoRisorsaProd=2 OR TipoRisorsaProd=4) AND 
+(RisorseProdutAnag.DataFineValidita=convert(datetime,&apos;01/01/1800&apos;) OR RisorseProdutAnag.DataFineValidita&gt;=GETDATE())</Query>
+					<FirmaUltVarData>2017-10-03</FirmaUltVarData>
+					<FirmaUltVarOra>142928</FirmaUltVarOra>
+					<FirmaUltVarStazione>A7</FirmaUltVarStazione>
+					<FirmaUltVarOperatore>SARA</FirmaUltVarOperatore>
+					<NomeStruttDinamica>YPK_ERISPROD</NomeStruttDinamica>
+					<LabelBottoni>[[RIPRACRISP$]]-[[RIPRADES$]]</LabelBottoni>
+					<CancSelInEntrata>1</CancSelInEntrata>
+					<CodiceQuery>DB</CodiceQuery>
+				</Attivita>
+				<Attivita>
+					<CodPro>81</CodPro>
+					<Attivita>10</Attivita>
+					<Des>SCANSIONE ARTICOLO</Des>
+					<FirmaUltVarData>2017-10-03</FirmaUltVarData>
+					<FirmaUltVarOra>142928</FirmaUltVarOra>
+					<FirmaUltVarStazione>A7</FirmaUltVarStazione>
+					<FirmaUltVarOperatore>SARA</FirmaUltVarOperatore>
+					<TipoAttivita>2</TipoAttivita>
+					<TitoloVideata>SELEZIONE ARTICOLO</TitoloVideata>
+					<CodiceInput>P02</CodiceInput>
+					<SkipConfInput>1</SkipConfInput>
+				</Attivita>
+				<Attivita>
+					<CodPro>81</CodPro>
+					<Attivita>15</Attivita>
+					<Des>SELEZIONE ARTICOLO</Des>
+					<CodQuery>803</CodQuery>
+					<NomeDFX>EORPRORF</NomeDFX>
+					<Query>SELECT  
+CodArt BCVOUT[ARCART$],
+DesArt BCVOUT[ARDES$]
+
+FROM ArtAnagrafica
+
+WHERE DBGruppo=BCVIN[GR$] AND 
+CodArt=RTRIM(BCVIN[[0.YPK_FILTRI.FSTR$]]) AND
+(DataFineValidita=CONVERT(DATETIME,&apos;01/01/1800&apos;) OR DataFineValidita&gt;=GETDATE())
+
+/*
+SELECT  
+CodArt BCVOUT[ARCVCART$],
+VarianteArt BCVOUT[ARCVVARART$],
+Descrizione BCVOUT[ARCVDES$]
+FROM ArtConfigVariante
+WHERE DBGruppo=BCVIN[GR$] AND 
+CodArt=SUBSTRING(BCVIN[[0.YPK_FILTRI.FSTR$]], 1, CHARINDEX(&apos;;&apos;, BCVIN[[0.YPK_FILTRI.FSTR$]])-1) AND
+VarianteArt=SUBSTRING(BCVIN[[0.YPK_FILTRI.FSTR$]], CHARINDEX(&apos;;&apos;, BCVIN[[0.YPK_FILTRI.FSTR$]]) + 1, 1000) AND
+(DataFineValidita=CONVERT(DATETIME,&apos;01/01/1800&apos;) OR DataFineValidita&gt;=GETDATE())
+*/</Query>
+					<FirmaUltVarData>2017-10-03</FirmaUltVarData>
+					<FirmaUltVarOra>142928</FirmaUltVarOra>
+					<FirmaUltVarStazione>A7</FirmaUltVarStazione>
+					<FirmaUltVarOperatore>SARA</FirmaUltVarOperatore>
+					<NumeroRigheBottoni>4</NumeroRigheBottoni>
+					<NumeroColonneBottoni>2</NumeroColonneBottoni>
+					<NomeStruttDinamica>YPK_EARAN</NomeStruttDinamica>
+					<LabelBottoni>[[ARCART$]]\n\n [[ARDES$]]</LabelBottoni>
+					<TitoloVideata>Selezione Materiale Non Previsto</TitoloVideata>
+					<TipoAzione>K</TipoAzione>
+					<CancSelInEntrata>1</CancSelInEntrata>
+					<CodiceQuery>DB</CodiceQuery>
+				</Attivita>
+				<Attivita>
+					<CodPro>81</CodPro>
+					<Attivita>17</Attivita>
+					<Des>SCANSIONE RIGA ODP</Des>
+					<FirmaUltVarData>2017-10-03</FirmaUltVarData>
+					<FirmaUltVarOra>142928</FirmaUltVarOra>
+					<FirmaUltVarStazione>A7</FirmaUltVarStazione>
+					<FirmaUltVarOperatore>SARA</FirmaUltVarOperatore>
+					<TipoAttivita>2</TipoAttivita>
+					<TitoloVideata>SELEZIONE RIGA ODP</TitoloVideata>
+					<CodiceInput>P02</CodiceInput>
+					<SkipConfInput>1</SkipConfInput>
+				</Attivita>
+				<Attivita>
+					<CodPro>81</CodPro>
+					<Attivita>19</Attivita>
+					<SkipBack>1</SkipBack>
+					<Des>SELEZIONE RIGA ODP</Des>
+					<CodQuery>803</CodQuery>
+					<NomeDFX>EORPRORF</NomeDFX>
+					<Query>SELECT   
+OrdProduzRighe.IdDocumento  BCVOUT[OPRIDD],  
+OrdProduzRighe.IdRiga  BCVOUT[OPRIDR]
+from 
+OrdProduzRighe 
+where 
+OrdProduzRighe.DBGruppo=BCVIN[GR$] and 
+OrdProduzRighe.IdDocumento=cast(substring(BCVIN[[0.YPK_FILTRI.FSTR$]],1,9) as int) AND 
+OrdProduzRighe.IdRiga=cast(substring(BCVIN[[0.YPK_FILTRI.FSTR$]],10,4) as int)</Query>
+					<FirmaUltVarData>2017-10-03</FirmaUltVarData>
+					<FirmaUltVarOra>142928</FirmaUltVarOra>
+					<FirmaUltVarStazione>A7</FirmaUltVarStazione>
+					<FirmaUltVarOperatore>SARA</FirmaUltVarOperatore>
+					<NumeroRigheBottoni>3</NumeroRigheBottoni>
+					<NumeroColonneBottoni>3</NumeroColonneBottoni>
+					<NomeStruttDinamica>YPK_EORPROR</NomeStruttDinamica>
+					<LabelBottoni>[[OPRIDD]]-[[OPRIDR]]</LabelBottoni>
+					<TitoloVideata>Selezione Riga ODP</TitoloVideata>
+					<TipoAzione>K</TipoAzione>
+					<TipoAzioneSingola>K</TipoAzioneSingola>
+					<TipoConferma>1</TipoConferma>
+					<CancSelInEntrata>1</CancSelInEntrata>
+					<CodiceQuery>DB</CodiceQuery>
+				</Attivita>
+				<Attivita>
+					<CodPro>81</CodPro>
+					<Attivita>20</Attivita>
+					<SkipBack>1</SkipBack>
+					<Des>APERTURA</Des>
+					<TipoOperazione1>704</TipoOperazione1>
+					<FirmaUltVarData>2017-10-03</FirmaUltVarData>
+					<FirmaUltVarOra>142928</FirmaUltVarOra>
+					<FirmaUltVarStazione>A7</FirmaUltVarStazione>
+					<FirmaUltVarOperatore>SARA</FirmaUltVarOperatore>
+					<TipoAttivita>4</TipoAttivita>
+					<GruppoDocumento>AVP</GruppoDocumento>
+					<CodTipoDoc>1</CodTipoDoc>
+					<CodiceTrans>T04</CodiceTrans>
+				</Attivita>
+				<Attivita>
+					<CodPro>81</CodPro>
+					<Attivita>25</Attivita>
+					<Des>VIS. TRANSAZIONI</Des>
+					<CodQuery>970</CodQuery>
+					<NomeDFX>YPK_TRAN</NomeDFX>
+					<Query>SELECT  
+YPKTransazioni.IdTransazione BCVOUT[TRAIDD],
+YPKTransazioni.CodTipTransazione BCVOUT[TRACODTT],
+YPKTransazioni.CodPro BCVOUT[TRACODPR],
+YPKTransazioni.Stato BCVOUT[TRASTA],
+YPKTransazioni.Esportata BCVOUT[TRAESP],
+YPKTransazioni.CodiceExport BCVOUT[TRACODXP],
+YPKTransazioni.CartellaExport BCVOUT[TRACARXP],
+YPKTransazioni.PrefNomeFileExport BCVOUT[TRAPNMXP],
+YPKTransazioni.DaRiavviare BCVOUT[TRADRI],
+YPKTransazioni.RisorsaSupporto BCVOUT[TRARSU],
+YPKTransazioni.IdLegameInterno BCVOUT[TRAIDRL],
+YPKTransazioni.DataApertura BCVOUT[TRADRA&amp;],
+YPKTransazioni.OraApertura BCVOUT[TRAORA],
+YPKTransazioni.DataChiusura BCVOUT[TRADRC&amp;],
+YPKTransazioni.OraChiusura BCVOUT[TRAORC],
+YPKTransazioni.OreLavorate BCVOUT[TRAOREL],
+YPKTransazioni.CausaleAttivita BCVOUT[TRACAUATT],
+YPKTransazioni.CodArt BCVOUT[TRACART],
+YPKTransazioni.VarianteArt BCVOUT[TRAVARART],
+YPKTransazioni.MaterialeImprevisto BCVOUT[TRAMATIMP],
+YPKTransazioni.Quantita BCVOUT[TRAQT],
+YPKTransazioni.QtaUmSecondaria BCVOUT[TRAQT2],
+YPKTransazioni.QtaScarti1Scelta BCVOUT[TRAQTSCP],
+YPKTransazioni.QtaSecScarti1Scelta BCVOUT[TRAQT2SCP],
+YPKTransazioni.QtaScarti2Scelta BCVOUT[TRAQTSCS],
+YPKTransazioni.QtaSecScarti2Scelta BCVOUT[TRAQT2SCS],
+YPKTransazioni.CodMagPrincipale BCVOUT[TRACMAG],
+YPKTransazioni.CodAreaMagPrinc BCVOUT[TRACCOM],
+YPKTransazioni.CodMagScaricoSec BCVOUT[TRACMAGS],
+YPKTransazioni.CodAreaMagSec BCVOUT[TRACCOMS],
+YPKTransazioni.CodOpMag BCVOUT[TRACOM],
+YPKTransazioni.CodOpMag1 BCVOUT[TRACOM1],
+YPKTransazioni.CodMagScarti1Scelta BCVOUT[TRACMAGSCP],
+YPKTransazioni.CodAreaScarti1Scelta BCVOUT[TRACCOMSCP],
+YPKTransazioni.CodMagScarti2Scelta BCVOUT[TRACMAGSCS],
+YPKTransazioni.CodAreaScarti2Scelta BCVOUT[TRACCOMSCS],
+YPKTransazioni.CodLineaProduzione BCVOUT[TRACLP],
+YPKTransazioni.CodiceRisorsaProd BCVOUT[TRACRISP],
+YPKTransazioni.CodLavorazione BCVOUT[TRATLV],
+YPKTransazioni.IdDocOrd BCVOUT[TRAIDDOR],
+YPKTransazioni.IdRigaOrdProdFinito BCVOUT[TRAIDRORPF],
+YPKTransazioni.IdRigaOrdMateriale BCVOUT[TRAIDRORMAT],
+YPKTransazioni.IdDocOrdFase BCVOUT[TRAIDDORF],
+YPKTransazioni.IdCarrelloTestate BCVOUT[TRAIDDCAR],
+YPKTransazioni.TipoDoc BCVOUT[TRATDO],
+YPKTransazioni.TipoOpAvanzProd BCVOUT[TRATOPAVP],
+YPKTransazioni.TipoOpAvanzProd1 BCVOUT[TRATOPAVP1],
+YPKTransazioni.Saldato BCVOUT[TRASAL],
+YPKTransazioni.RifLottoPFAlfanum BCVOUT[TRARPAL],
+YPKTransazioni.RifLottoPFData BCVOUT[TRARPADL],
+YPKTransazioni.RifLottoPFNumero BCVOUT[TRARPANL],
+YPKTransazioni.ClasseImputazione BCVOUT[TRACLIMP],
+YPKTransazioni.CodImputazione BCVOUT[TRACIMP],
+YPKTransazioni.DatiIndTipoOpIndustr BCVOUT[TRATOIND],
+YPKTransazioni.DatiIndCodCdA BCVOUT[TRACCOS],
+YPKTransazioni.DatiIndCodCommessa BCVOUT[TRACPRO],
+YPKTransazioni.DatiIndCodSottocomm BCVOUT[TRACSCOM],
+YPKTransazioni.DatiIndCodFase BCVOUT[TRACFASE],
+YPKTransazioni.IdCodAttivita BCVOUT[TRAIDATT],
+YPKTransazioni.TipoOperazioneConsLa BCVOUT[TRATOPRL],
+YPKTransazioni.ValutazioneInserita BCVOUT[TRAFVAL],
+YPKTransazioni.Cancellata BCVOUT[TRACANC],
+YPKTransazioni.IdLegamePresenza BCVOUT[TRAIDRP],
+YPKTransazioni.ControlloPresenza BCVOUT[TRACTP],
+YPKTransazioni.TipoRilevamentoTempo BCVOUT[TRATRT],
+YPKTransazioni.ChiusuraAutomatica BCVOUT[TRACHAU],
+YPKTransazioni.RiaperturaUltTransaz BCVOUT[TRARUT],
+YPKTransazioni.MinRitardoApertura BCVOUT[TRAMRA],
+YPKTransazioni.InseritaManualmente BCVOUT[TRAIMA],
+YPKTransazioni.WsInUso BCVOUT[TRAWS],
+YPKTransazioni.FirmaCreazData BCVOUT[TRACDAT&amp;],
+YPKTransazioni.FirmaCreazOra BCVOUT[TRACORA],
+YPKTransazioni.FirmaCreazStazione BCVOUT[TRACWS],
+YPKTransazioni.FirmaCreazOperatore BCVOUT[TRACOPE],
+YPKTransazioni.FirmaUltVarData BCVOUT[TRAVDAT&amp;],
+YPKTransazioni.FirmaUltVarOra BCVOUT[TRAVORA],
+YPKTransazioni.FirmaUltVarStazione BCVOUT[TRAVWS],
+YPKTransazioni.FirmaUltVarOperatore BCVOUT[TRAVOPE],
+YPKTransazioni.DesEstesa BCVOUT[TRATESTO],
+case when YPKTransazioni.Quantita=0 then 1 else 2 end BCVOUT[YPK_STATO]
+
+from YPKTransazioni left join ArtAnagrafica
+on YPKTransazioni.DBGruppo=ArtAnagrafica.DBGruppo
+and YPKTransazioni.CodArt =ArtAnagrafica.CodArt
+where    
+YPKTransazioni.DBGruppo=BCVIN[GR$] and    
+YPKTransazioni.CodiceRisorsaProd=BCVIN[[0.YPK_ERISPROD.RIPRACRISP$]]  
+and YPKTransazioni.Stato=0 and YPKTransazioni.CodTipTransazione&lt;&gt;1 and
+YPKTransazioni.Cancellata=0 AND YPKTransazioni.CodPro=BCVIN[COD_PRO]
+order by ArtAnagrafica.MagGiacPerLotti desc</Query>
+					<FirmaUltVarData>2017-10-03</FirmaUltVarData>
+					<FirmaUltVarOra>142928</FirmaUltVarOra>
+					<FirmaUltVarStazione>A7</FirmaUltVarStazione>
+					<FirmaUltVarOperatore>SARA</FirmaUltVarOperatore>
+					<NomeStruttDinamica>YPK_TRAN</NomeStruttDinamica>
+					<LabelBottoni>select 
+isnull(dbo.pkGetRifOrdProdRiga(BCVIN[GR$],[[TRAIDDOR]],[[TRAIDRORPF]]),&apos;no rif. riga&apos;)+&apos;\n&apos; + 
+isnull((select RTRIM(CodArt)+&apos; &apos;+RTRIM(Des)+&apos;\n[&apos;+UnitaMisura+&apos;] &apos;+
+convert(varchar(25),convert(int,Quantita)) 
+from OrdProduzRighe where DBGruppo=BCVIN[GR$] 
+and IdDocumento=[[TRAIDDOR]] and IdRiga=[[TRAIDRORPF]]  ),&apos;no-rif-art-pf&apos;)</LabelBottoni>
+					<TitoloVideata>Quantità Consumata</TitoloVideata>
+					<TipoAzione>E</TipoAzione>
+					<TipoConferma>1</TipoConferma>
+					<CancSelInEntrata>1</CancSelInEntrata>
+					<CodiceEdit>E16</CodiceEdit>
+					<ParametriEdit>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;Parametri&gt;
+	&lt;CausaleAttivita&gt;
+		&lt;Modalita&gt;1&lt;/Modalita&gt;
+	&lt;/CausaleAttivita&gt;
+	&lt;Note&gt;
+		&lt;MostraNote&gt;1&lt;/MostraNote&gt;
+	&lt;/Note&gt;
+	&lt;Lotto&gt;
+		&lt;Modalita&gt;2&lt;/Modalita&gt;
+		&lt;LabelBottone&gt;Rif. [[MAPDES$]]\n[[UMAG$]] [[QPRELUMAG]]/[[QGF]] - Mag. [[CODMAG$]] [[CODAREA$]]\n Apertura: [[MAPDAP&amp;amp;]]&lt;/LabelBottone&gt;
+		&lt;Query&gt;select MagAnagrLotti.CodArt BCVOUT[MAPCART],  
+MagAnagrLotti.VarianteArt BCVOUT[MAPVARART], 
+MagAnagrLotti.RifLottoAlfa BCVOUT[MAPRPA], 
+MagAnagrLotti.RifLottoData BCVOUT[MAPRPAD], 
+MagAnagrLotti.RifLottoNum BCVOUT[MAPRPAN], 
+MagAnagrLotti.Des BCVOUT[MAPDES], 
+MagAnagrLotti.DataAperturaLotto BCVOUT[MAPDAP], 
+MagAnagrLotti.DataScadenzaLotto BCVOUT[MAPDSC], 
+MagProgrLotto.QtaGiacenzaUmMag BCVOUT[QGF], 
+MagProgrLotto.CodMag BCVOUT[CODMAG], 
+MagProgrLotto.CodAreaMag BCVOUT[CODAREA], 
+ArtAnagrafica.MagUm BCVOUT[UMAG], 
+CASE WHEN ArtAnagrafica.MagGiacPerLotti = 1 AND 
+MagAnagrLotti.RifLottoData &amp;gt; { d &amp;apos;1800-01-01&amp;apos; } THEN CASE MagAnagrLotti.RifLottoData WHEN { d &amp;apos;1800-01-01&amp;apos; } THEN &amp;apos;&amp;apos; ELSE (CONVERT(VARCHAR(2), DAY(MagAnagrLotti.RifLottoData))  
+ + &amp;apos;/&amp;apos; + RIGHT(&amp;apos;00&amp;apos; + CONVERT(VARCHAR(2), MONTH(MagAnagrLotti.RifLottoData)), 2) + &amp;apos;/&amp;apos; + CONVERT(VARCHAR(4), YEAR(MagAnagrLotti.RifLottoData))) END WHEN ArtAnagrafica.MagGiacPerLotti = 2 AND 
+MagAnagrLotti.RifLottoNum &amp;gt; 0 THEN CONVERT(VARCHAR(255), MagAnagrLotti.RifLottoNum) WHEN ArtAnagrafica.MagGiacPerLotti = 3 AND MagAnagrLotti.RifLottoData &amp;gt; { d &amp;apos;1800-01-01&amp;apos; } AND  
+MagAnagrLotti.RifLottoNum &amp;gt; 0 THEN CASE MagAnagrLotti.RifLottoData WHEN { d &amp;apos;1800-01-01&amp;apos; } THEN &amp;apos;&amp;apos; ELSE (CONVERT(VARCHAR(2), DAY(MagAnagrLotti.RifLottoData)) + &amp;apos;/&amp;apos; + RIGHT(&amp;apos;00&amp;apos; + CONVERT(VARCHAR(2), 
+ MONTH(MagAnagrLotti.RifLottoData)), 2) + &amp;apos;/&amp;apos; + CONVERT(VARCHAR(4), YEAR(MagAnagrLotti.RifLottoData))) END + &amp;apos;  &amp;apos; + CONVERT(VARCHAR(255), MagAnagrLotti.RifLottoNum)  
+WHEN ArtAnagrafica.MagGiacPerLotti = 4 THEN MagAnagrLotti.RifLottoAlfa WHEN ArtAnagrafica.MagGiacPerLotti = 5 AND MagAnagrLotti.RifLottoData &amp;gt; { d &amp;apos;1800-01-01&amp;apos; } AND  
+MagAnagrLotti.RifLottoAlfa &amp;lt;&amp;gt; &amp;apos;&amp;apos; THEN CASE MagAnagrLotti.RifLottoData WHEN { d &amp;apos;1800-01-01&amp;apos; } THEN &amp;apos;&amp;apos; ELSE (CONVERT(VARCHAR(2), DAY(MagAnagrLotti.RifLottoData)) 
+ + &amp;apos;/&amp;apos; + RIGHT(&amp;apos;00&amp;apos; + CONVERT(VARCHAR(2), MONTH(MagAnagrLotti.RifLottoData)), 2) + &amp;apos;/&amp;apos; + CONVERT(VARCHAR(4), YEAR(MagAnagrLotti.RifLottoData))) END + &amp;apos;  &amp;apos; + MagAnagrLotti.RifLottoAlfa ELSE &amp;apos;&amp;apos; END 
+ as RifLotto BCVOUT[RIFLOTTO]
+from MagAnagrLotti 
+left join MagProgrLotto on 
+MagAnagrLotti.DBGruppo=MagProgrLotto.DBGruppo and 
+MagAnagrLotti.CodArt=MagProgrLotto.CodArt 
+and MagAnagrLotti.VarianteArt=MagProgrLotto.VarianteArt 
+and MagAnagrLotti.RifLottoAlfa=MagProgrLotto.RifLottoAlfab 
+and MagAnagrLotti.RifLottoData=MagProgrLotto.RifLottoData 
+and MagAnagrLotti.RifLottoNum=MagProgrLotto.RifLottoNum 
+INNER JOIN ArtAnagrafica AS ArtAnagrafica ON ArtAnagrafica.CodArt = MagAnagrLotti.CodArt AND ArtAnagrafica.DBGruppo = MagAnagrLotti.DBGruppo 
+where MagAnagrLotti.DBGruppo=BCVIN[GR] and MagProgrLotto.CodMag=BCVIN[[0.YPK_TRAN.TRACMAG$]] and MagAnagrLotti.CodArt=BCVIN[[0.YPK_TRAN.TRACART$]] 
+and MagProgrLotto.QtaGiacenzaUmMag&amp;gt;0 
+order by MagAnagrLotti.DataAperturaLotto&lt;/Query&gt;
+	&lt;/Lotto&gt;
+	&lt;Labels&gt;
+		&lt;TitoloVideata&gt;Editazione Quantita&lt;/TitoloVideata&gt;
+		&lt;PrioritaInserimentoUmSec&gt;1&lt;/PrioritaInserimentoUmSec&gt;
+		&lt;ModalitaQuantita&gt;1&lt;/ModalitaQuantita&gt;
+		&lt;NascondiFlagSaldo&gt;1&lt;/NascondiFlagSaldo&gt;
+	&lt;/Labels&gt;
+	&lt;Magazzini&gt;
+		&lt;LabelBottone&gt;[[MAGCMAG$]]-[[MAGDES$]]&lt;/LabelBottone&gt;
+		&lt;Query&gt;select Magazzini.CodMag BCVOUT[MAGCMAG$],  
+Magazzini.DesMagazzino BCVOUT[MAGDES$] 
+from Magazzini 
+where Magazzini.DBGruppo=BCVIN[GR$] 
+order by Magazzini.CodMag&lt;/Query&gt;
+	&lt;/Magazzini&gt;
+&lt;/Parametri&gt;</ParametriEdit>
+					<CodiceConferma>C13</CodiceConferma>
+					<ParametriConferma>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;Parametri&gt;
+	&lt;Checks&gt;
+		&lt;ModalitaEditazione&gt;1&lt;/ModalitaEditazione&gt;
+	&lt;/Checks&gt;
+	&lt;Lotti&gt;
+		&lt;ControlloLotti&gt;1&lt;/ControlloLotti&gt;
+		&lt;LabelBottone&gt;Rif. [[MAPDES$]]\n[[UMAG$]] [[QGF]] - [[CODMAG$]] [[CODAREA$]]\n Apertura: [[MAPDAP&amp;amp;]]&lt;/LabelBottone&gt;
+		&lt;Query&gt;select MagAnagrLotti.CodArt BCVOUT[MAPCART],  
+MagAnagrLotti.VarianteArt BCVOUT[MAPVARART], 
+MagAnagrLotti.RifLottoAlfa BCVOUT[MAPRPA], 
+MagAnagrLotti.RifLottoData BCVOUT[MAPRPAD], 
+MagAnagrLotti.RifLottoNum BCVOUT[MAPRPAN], 
+MagAnagrLotti.Des BCVOUT[MAPDES], 
+MagAnagrLotti.DataAperturaLotto BCVOUT[MAPDAP], 
+MagAnagrLotti.DataScadenzaLotto BCVOUT[MAPDSC], 
+MagProgrLotto.QtaGiacenzaUmMag BCVOUT[QGF], 
+MagProgrLotto.CodMag BCVOUT[CODMAG], 
+MagProgrLotto.CodAreaMag BCVOUT[CODAREA], 
+ArtAnagrafica.MagUm BCVOUT[UMAG], 
+CASE WHEN ArtAnagrafica.MagGiacPerLotti = 1 AND 
+MagAnagrLotti.RifLottoData &amp;gt; { d &amp;apos;1800-01-01&amp;apos; } THEN CASE MagAnagrLotti.RifLottoData WHEN { d &amp;apos;1800-01-01&amp;apos; } THEN &amp;apos;&amp;apos; ELSE (CONVERT(VARCHAR(2), DAY(MagAnagrLotti.RifLottoData))  
+ + &amp;apos;/&amp;apos; + RIGHT(&amp;apos;00&amp;apos; + CONVERT(VARCHAR(2), MONTH(MagAnagrLotti.RifLottoData)), 2) + &amp;apos;/&amp;apos; + CONVERT(VARCHAR(4), YEAR(MagAnagrLotti.RifLottoData))) END WHEN ArtAnagrafica.MagGiacPerLotti = 2 AND 
+MagAnagrLotti.RifLottoNum &amp;gt; 0 THEN CONVERT(VARCHAR(255), MagAnagrLotti.RifLottoNum) WHEN ArtAnagrafica.MagGiacPerLotti = 3 AND MagAnagrLotti.RifLottoData &amp;gt; { d &amp;apos;1800-01-01&amp;apos; } AND  
+MagAnagrLotti.RifLottoNum &amp;gt; 0 THEN CASE MagAnagrLotti.RifLottoData WHEN { d &amp;apos;1800-01-01&amp;apos; } THEN &amp;apos;&amp;apos; ELSE (CONVERT(VARCHAR(2), DAY(MagAnagrLotti.RifLottoData)) + &amp;apos;/&amp;apos; + RIGHT(&amp;apos;00&amp;apos; + CONVERT(VARCHAR(2), 
+ MONTH(MagAnagrLotti.RifLottoData)), 2) + &amp;apos;/&amp;apos; + CONVERT(VARCHAR(4), YEAR(MagAnagrLotti.RifLottoData))) END + &amp;apos;  &amp;apos; + CONVERT(VARCHAR(255), MagAnagrLotti.RifLottoNum)  
+WHEN ArtAnagrafica.MagGiacPerLotti = 4 THEN MagAnagrLotti.RifLottoAlfa WHEN ArtAnagrafica.MagGiacPerLotti = 5 AND MagAnagrLotti.RifLottoData &amp;gt; { d &amp;apos;1800-01-01&amp;apos; } AND  
+MagAnagrLotti.RifLottoAlfa &amp;lt;&amp;gt; &amp;apos;&amp;apos; THEN CASE MagAnagrLotti.RifLottoData WHEN { d &amp;apos;1800-01-01&amp;apos; } THEN &amp;apos;&amp;apos; ELSE (CONVERT(VARCHAR(2), DAY(MagAnagrLotti.RifLottoData)) 
+ + &amp;apos;/&amp;apos; + RIGHT(&amp;apos;00&amp;apos; + CONVERT(VARCHAR(2), MONTH(MagAnagrLotti.RifLottoData)), 2) + &amp;apos;/&amp;apos; + CONVERT(VARCHAR(4), YEAR(MagAnagrLotti.RifLottoData))) END + &amp;apos;  &amp;apos; + MagAnagrLotti.RifLottoAlfa ELSE &amp;apos;&amp;apos; END 
+ as RifLotto BCVOUT[RIFLOTTO]
+from MagAnagrLotti 
+left join MagProgrLotto on 
+MagAnagrLotti.DBGruppo=MagProgrLotto.DBGruppo and 
+MagAnagrLotti.CodArt=MagProgrLotto.CodArt 
+and MagAnagrLotti.VarianteArt=MagProgrLotto.VarianteArt 
+and MagAnagrLotti.RifLottoAlfa=MagProgrLotto.RifLottoAlfab 
+and MagAnagrLotti.RifLottoData=MagProgrLotto.RifLottoData 
+and MagAnagrLotti.RifLottoNum=MagProgrLotto.RifLottoNum 
+INNER JOIN ArtAnagrafica AS ArtAnagrafica ON ArtAnagrafica.CodArt = MagAnagrLotti.CodArt AND ArtAnagrafica.DBGruppo = MagAnagrLotti.DBGruppo 
+where MagAnagrLotti.DBGruppo=BCVIN[GR] and MagProgrLotto.CodMag=BCVIN[[0.YPK_TRAN.TRACMAG$]] and MagAnagrLotti.CodArt=BCVIN[[0.YPK_TRAN.TRACART$]] 
+and MagProgrLotto.QtaGiacenzaUmMag&amp;gt;0 
+order by MagAnagrLotti.DataAperturaLotto&lt;/Query&gt;
+	&lt;/Lotti&gt;
+&lt;/Parametri&gt;</ParametriConferma>
+					<CodiceCancel>A04</CodiceCancel>
+					<CodiceQuery>DB</CodiceQuery>
+					<CodiceEnable>N02</CodiceEnable>
+					<ParametriEnable>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;Parametri&gt;
+	&lt;Lotti/&gt;
+&lt;/Parametri&gt;</ParametriEnable>
+				</Attivita>
+				<Attivita>
+					<CodPro>81</CodPro>
+					<Attivita>30</Attivita>
+					<Des>CHIUSURA</Des>
+					<FirmaUltVarData>2017-10-03</FirmaUltVarData>
+					<FirmaUltVarOra>142928</FirmaUltVarOra>
+					<FirmaUltVarStazione>A7</FirmaUltVarStazione>
+					<FirmaUltVarOperatore>SARA</FirmaUltVarOperatore>
+					<TipoAttivita>4</TipoAttivita>
+					<CodiceTrans>T02</CodiceTrans>
+				</Attivita>
+				<Attivita>
+					<CodPro>81</CodPro>
+					<Attivita>35</Attivita>
+					<Des>ESPORTAZIONE</Des>
+					<FirmaUltVarData>2017-10-03</FirmaUltVarData>
+					<FirmaUltVarOra>142928</FirmaUltVarOra>
+					<FirmaUltVarStazione>A7</FirmaUltVarStazione>
+					<FirmaUltVarOperatore>SARA</FirmaUltVarOperatore>
+					<TipoAttivita>5</TipoAttivita>
+					<CodiceExport>E15</CodiceExport>
+					<PrefissoExport>AVL</PrefissoExport>
+					<CartellaExpDati>PK\</CartellaExpDati>
+				</Attivita>
+			</ElencoAttivita>
+		</Processo>
+	</ElencoProcessi>
+</Pickup>
+

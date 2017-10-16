@@ -13,4 +13,6 @@ la gestione della seconda unità di misura. Se il materiale è gestito a lotto, 
 
 {% include image.html name="0.jpg" caption="Videata di editazione quantità:
  inserendo il valore nell'unità di misura secondaria viene automaticamente aggiornato quello nell'unità di misura del documento." %}
+ 
+{% include download.html name="proc.xml" %}
 
