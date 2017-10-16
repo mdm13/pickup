@@ -3,7 +3,7 @@ description: "Esempi di utilizzo di Pickup, il Manufacturing execution system (M
 meta_description: "Blogging about Pickup MES"
 
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
 logo: false
 paginate: 15
 baseurl: /pickup

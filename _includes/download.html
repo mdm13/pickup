@@ -1,2 +1,6 @@
 {% capture filePath %}{{ page.date | date: "%Y-%m-%d" }}-{{ page.title | slugify }}/{{ include.name }}{% endcapture %} 
+{% if include.caption %}
+<a href="{{site.baseurl}}/assets/posts/{{ filePath }}"  download >{{ include.caption }}</a>
+{% else %}
 <a href="{{site.baseurl}}/assets/posts/{{ filePath }}"  download >download</a>
+{% endif %}
