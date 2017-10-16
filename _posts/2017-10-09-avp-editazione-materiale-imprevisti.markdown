@@ -10,7 +10,6 @@ da un cartellino di produzione. L'operatore viene guidato alla videata di imputa
 la gestione della seconda unità di misura. Se il materiale è gestito a lotto, l'operatore deve selezionare il lotto da scaricare, 
 è prevista la possibilità di selezionare più lotti.
 
-![Cloudflare architecture](0.jpg)
 
 {% include image.html name="0.jpg" caption="Videata di editazione quantità:
  inserendo il valore nell'unità di misura secondaria viene automaticamente aggiornato quello nell'unità di misura del documento." %}

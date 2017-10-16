@@ -9,11 +9,7 @@ paginate: 15
 baseurl: /pickup
 domain_name: 'https://mdm13.github.com/pickup'
 google_analytics: 'UA-XXXXXXXX-X'
-permalink: /:year/:month/:day/:title.html
-gems: 
-    - jekyll-paginate
-    - jekyll-postfiles
-    
+gems: [jekyll-paginate]
 
 # Details for the RSS feed generator
 url:            'blog url'
