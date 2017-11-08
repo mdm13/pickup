@@ -12,7 +12,7 @@ correggere l'impostazione dell'ordine di produzione direttamente da Esolver. Que
 errati, dal momento che l'indicazione del lotto è obbligatoria.
 
 
-{% include image.html name="editazione-quantita.jpg" caption="Videata di editazione quantità con visualizzazione del riferimento del lotto per il prodotto finito." %}
+{% include image.html name="editazione_quantita.jpg" caption="Videata di editazione quantità con visualizzazione del riferimento del lotto per il prodotto finito." %}
 
 Nel dettaglio il processo segue i seguenti steps, seguendo la sequenza delle attività:
 
