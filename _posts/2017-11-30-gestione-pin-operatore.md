@@ -16,6 +16,9 @@ del PIN nel caso in cui la selezione sia collegata alla lettura di un codice a b
 Una volta attivata la gestione del PIN, con la selezione della risorsa tramite la pressione del bottone corrispondente, si apre la videata di inserimento del PIN, che se corretto permette di proseguire
 con le attività del processo.
 
+{% include image.html name="inserimento-pin.jpg" caption="Videata di inserimento PIN di controllo per la selezione della risorsa." %}
+
+
 L'amministrazione dei PIN delle risorse avviene tramite un processo di Pickup dedicato, incluso nel modulo Presenze; si seleziona la risorsa e si inserisce il PIN dell'operatore (fino a 12 cifre); 
 il valore viene salvato in forma
 criptata come codice esterno nell'anagrafica risorse di Esolver, per cui non è possibile carpire il PIN di un operatore una volta inserito nel database di Esolver. Nel caso l'operatore smarrisca il PIN questo dovrà richiederne uno nuovo, ed il processo di aggiornamento di un nuovo PIN annullerà quello non più in uso; infine non è permessa la duplicazione dei PIN o il riutilizzo di PIN non più in uso.
