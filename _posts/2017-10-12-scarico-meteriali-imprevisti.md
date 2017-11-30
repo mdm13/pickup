@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Scarico materiali imprevisti"
-date: 12 ottobre 2017
+date: 12 october 2017
 ---
 
 Nel contesto dell'avanzamento di produzione, è possibile collegare lo scarico di materiali impevisti 

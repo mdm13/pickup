@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Carico prodotto finito"
-date: 8 novembre 2017
+date: 8 november 2017
 ---
 
 Consideriamo il caso del carico a magazzino del prodotto finito dal riferimento della riga 
