@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Pickup>
+	<Versione>
+		<Versione>42.31.15</Versione>
+		<DataVersione>2017-10-12</DataVersione>
+		<OraVersione>805</OraVersione>
+		<DescrizioneVersione>Flag Materiale non previsto in YPKTRAN; campo UM2</DescrizioneVersione>
+	</Versione>
+	<ElencoProcessi>
+		<Processo>
+			<CodPro>1300</CodPro>
+			<Versione>3.2</Versione>
+			<DesProcesso>GESTIONE PIN OPERATORI</DesProcesso>
+			<DesEstesaProcesso>Aggiornamento del PIN per gli operatori</DesEstesaProcesso>
+			<CodCategoria>1</CodCategoria>
+			<Modulo>1</Modulo>
+			<GruppoDocumento>AVP</GruppoDocumento>
+			<FirmaUltVarData>2017-06-09</FirmaUltVarData>
+			<FirmaUltVarOra>175146</FirmaUltVarOra>
+			<FirmaUltVarStazione>07</FirmaUltVarStazione>
+			<FirmaUltVarOperatore>SCP</FirmaUltVarOperatore>
+			<StatoOrdineSped>2</StatoOrdineSped>
+			<ElencoAttivita>
+				<Attivita>
+					<CodPro>1300</CodPro>
+					<Attivita>5</Attivita>
+					<Des>OPERATORI</Des>
+					<CodQuery>831</CodQuery>
+					<NomeDFX>ERISPROD</NomeDFX>
+					<Query>SELECT 
+RisorseProdutAnag.CodRisorsaProd BCVOUT[RIPRACRISP$],  
+RisorseProdutAnag.Des BCVOUT[RIPRADES], 
+RisorseProdutAnag.TipoRisorsaProd BCVOUT[RIPRATRIS],
+RisorseProdutAnag.CodRisorsaProd BCVOUT[YPK_BARCODE]
+FROM RisorseProdutAnag  
+WHERE RisorseProdutAnag.DBGruppo=BCVIN[GR$] AND  
+(TipoRisorsaProd=2 or TipoRisorsaProd=4) AND 
+(RisorseProdutAnag.DataFineValidita=convert(datetime,&apos;01/01/1800&apos;) OR RisorseProdutAnag.DataFineValidita&gt;=GETDATE())
+order by RisorseProdutAnag.Des</Query>
+					<FirmaUltVarData>2017-06-09</FirmaUltVarData>
+					<FirmaUltVarOra>175146</FirmaUltVarOra>
+					<FirmaUltVarStazione>07</FirmaUltVarStazione>
+					<FirmaUltVarOperatore>SCP</FirmaUltVarOperatore>
+					<NomeStruttDinamica>YPK_ERISPROD</NomeStruttDinamica>
+					<LabelBottoni>[[RIPRADES$]]</LabelBottoni>
+					<TitoloVideata>Selezione Risorsa</TitoloVideata>
+					<TipoAzione>K</TipoAzione>
+					<CancSelInEntrata>1</CancSelInEntrata>
+					<ParametriSelezione>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;Parametri&gt;
+	&lt;Operatori&gt;
+		&lt;ControlloPIN&gt;1&lt;/ControlloPIN&gt;
+		&lt;ControlloPresenza&gt;1&lt;/ControlloPresenza&gt;
+		&lt;ControlloTransazioniAperte&gt;1&lt;/ControlloTransazioniAperte&gt;
+	&lt;/Operatori&gt;
+&lt;/Parametri&gt;</ParametriSelezione>
+					<CodiceQuery>DB</CodiceQuery>
+				</Attivita>
+				<Attivita>
+					<CodPro>1300</CodPro>
+					<Attivita>10</Attivita>
+					<Des>GESTIONE PIN</Des>
+					<FirmaUltVarData>2017-06-09</FirmaUltVarData>
+					<FirmaUltVarOra>175228</FirmaUltVarOra>
+					<FirmaUltVarStazione>07</FirmaUltVarStazione>
+					<FirmaUltVarOperatore>SCP</FirmaUltVarOperatore>
+					<TipoAttivita>1</TipoAttivita>
+					<CodiceCustom>C17</CodiceCustom>
+				</Attivita>
+			</ElencoAttivita>
+		</Processo>
+	</ElencoProcessi>
+</Pickup>
+

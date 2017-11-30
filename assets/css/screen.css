@@ -232,6 +232,11 @@ h6 {
     font-size: 2rem;
 }
 
+figcaption {
+    font-size: 12px;
+    text-align: center;
+}
+
 a {
     color: #4A4A4A;
     transition: color ease 0.3s;
