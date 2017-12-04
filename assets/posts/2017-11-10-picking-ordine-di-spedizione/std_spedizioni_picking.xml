@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Pickup>
+	<Versione>
+		<Versione>42.31.15</Versione>
+		<DataVersione>2017-10-12</DataVersione>
+		<OraVersione>805</OraVersione>
+		<DescrizioneVersione>Flag Materiale non previsto in YPKTRAN; campo UM2</DescrizioneVersione>
+	</Versione>
+	<ElencoProcessi>
+		<Processo>
+			<CodPro>4010</CodPro>
+			<Versione>3.1</Versione>
+			<DesProcesso>Picking con Selezione Cliente</DesProcesso>
+			<DesEstesaProcesso>Picking con inserimento matricole (Aristarco)</DesEstesaProcesso>
+			<CodCategoria>4</CodCategoria>
+			<Modulo>4</Modulo>
+			<FirmaUltVarData>2017-08-22</FirmaUltVarData>
+			<FirmaUltVarOra>143337</FirmaUltVarOra>
+			<FirmaUltVarStazione>05</FirmaUltVarStazione>
+			<FirmaUltVarOperatore>SCP</FirmaUltVarOperatore>
+			<StatoOrdineSped>2</StatoOrdineSped>
+			<FileImmagine>CARRELLO_01.PNG</FileImmagine>
+			<ElencoAttivita>
+				<Attivita>
+					<CodPro>4010</CodPro>
+					<Attivita>5</Attivita>
+					<SkipBack>1</SkipBack>
+					<Des>Selezione Cliente</Des>
+					<Query>select 
+ClientiFornitori.TipoAnagrafica BCVOUT[CFCF],
+ClientiFornitori.CodCliFor BCVOUT[CFCCF],
+ClientiFornitori.IdAnagGen BCVOUT[CFAGB],
+ClientiFornitori.CodCliFor BCVOUT[YPK_BARCODE]
+from ClientiFornitori 
+where ClientiFornitori.DBGruppo=BCVIN[GR$] and ClientiFornitori.TipoAnagrafica=1
+order by ClientiFornitori.CodCliFor</Query>
+					<FirmaUltVarData>2017-08-22</FirmaUltVarData>
+					<FirmaUltVarOra>143556</FirmaUltVarOra>
+					<FirmaUltVarStazione>05</FirmaUltVarStazione>
+					<FirmaUltVarOperatore>SCP</FirmaUltVarOperatore>
+					<NomeStruttDinamica>YPK_ECFAN</NomeStruttDinamica>
+					<LabelBottoni>select isnull((select &apos;[[CFCCF]]-&apos;+RagSoc1 from AnagrGenIndirizzi where  IdAnagGen=[[CFAGB]] and NumProgr=0),&apos;[[CFCCF]]&apos;)</LabelBottoni>
+					<TitoloVideata>Selezione Cliente</TitoloVideata>
+					<TipoAzione>K</TipoAzione>
+					<TipoAzioneSingola>K</TipoAzioneSingola>
+					<TipoAzioneBarcode>1</TipoAzioneBarcode>
+					<CancSelInEntrata>1</CancSelInEntrata>
+					<CodiceQuery>DB</CodiceQuery>
+				</Attivita>
+				<Attivita>
+					<CodPro>4010</CodPro>
+					<Attivita>10</Attivita>
+					<Des>Testate Ordini di Spedizione</Des>
+					<Query>SELECT 
+OrdSpedTestata.IdDocumento BCVOUT[PSTIDD],
+OrdSpedTestata.PeriodoRifNumeraz BCVOUT[PSTPNU],
+OrdSpedTestata.CodSerie BCVOUT[PSTSNU],
+OrdSpedTestata.NumRegistraz BCVOUT[PSTNRG],
+OrdSpedTestata.DataRegistraz BCVOUT[PSTDRG&amp;],
+OrdSpedTestata.TipoAnagrafica BCVOUT[PSTCF],
+OrdSpedTestata.CodCliFor BCVOUT[PSTCCF],
+OrdSpedTestata.SpedRagSoc1 BCVOUT[PSTSPRS1$],
+OrdSpedTestata.StatoSpedizione BCVOUT[PSTSTSPED],
+OrdSpedTestata.StatoSpedizione BCVOUT[YPK_STATO]
+from OrdSpedTestata
+where   
+OrdSpedTestata.DBGruppo=BCVIN[GR$] and 
+OrdSpedTestata.CodCliFor=BCVIN[[0.YPK_ECFAN.CFCCF]] and
+OrdSpedTestata.StatoSpedizione&lt;4</Query>
+					<FirmaUltVarData>2017-08-22</FirmaUltVarData>
+					<FirmaUltVarStazione>05</FirmaUltVarStazione>
+					<FirmaUltVarOperatore>SCP</FirmaUltVarOperatore>
+					<NumeroRigheBottoni>5</NumeroRigheBottoni>
+					<NumeroColonneBottoni>3</NumeroColonneBottoni>
+					<AltezzaCelleTerm>4</AltezzaCelleTerm>
+					<NomeStruttDinamica>YPK_EPSPT</NomeStruttDinamica>
+					<LabelBottoni>select &apos;OdS [[PSTPNU]].[[PSTSNU]].[[PSTNRG]] del [[PSTDRG&amp;]]\n&apos;+
+       RTRIM(&apos;[[PSTSPRS1$]]&apos;)+&apos;\n&apos;+
+case when [[PSTSTSPED]]=0 then &apos;Da rilasciare&apos; 
+     when [[PSTSTSPED]]=1 then &apos;Rilasciato&apos;
+     when [[PSTSTSPED]]=2 then &apos;Prelevato&apos;
+     when [[PSTSTSPED]]=3 then &apos;In Spedizione&apos;
+     when [[PSTSTSPED]]=4 then &apos;Spedito&apos;
+end</LabelBottoni>
+					<TitoloVideata>Ordini di Spedizione</TitoloVideata>
+					<TipoAzione>K</TipoAzione>
+					<CancSelInEntrata>1</CancSelInEntrata>
+					<CodiceSelezione>S07</CodiceSelezione>
+					<ParametriEdit>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;Parametri&gt;
+	&lt;RicercaClientiFornitori/&gt;
+	&lt;RicercaArea/&gt;
+&lt;/Parametri&gt;</ParametriEdit>
+					<ParametriInsert>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;Parametri&gt;
+	&lt;RicercaLotti&gt;
+		&lt;LabelBottone&gt;Rif. [[MAPRPAD&amp;amp;]] [[MAPDES$]]\n[[UMAG$]] [[QGF]] - [[CODMAG$]] [[CODAREA$]]\n Apertura: [[MAPDAP&amp;amp;]]&lt;/LabelBottone&gt;
+		&lt;Query&gt;select top 3
+MagAnagrLotti.CodArt BCVOUT[MAPCART$],  
+MagAnagrLotti.VarianteArt BCVOUT[MAPVARART$], 
+MagAnagrLotti.RifLottoAlfa BCVOUT[MAPRPA$], 
+MagAnagrLotti.RifLottoData BCVOUT[MAPRPAD&amp;amp;], 
+MagAnagrLotti.RifLottoNum BCVOUT[MAPRPAN], 
+MagAnagrLotti.Des BCVOUT[MAPDES], 
+MagAnagrLotti.DataAperturaLotto BCVOUT[MAPDAP&amp;amp;], 
+MagAnagrLotti.DataScadenzaLotto BCVOUT[MAPDSC], 
+MagProgrLotto.QtaGiacenzaUmMag BCVOUT[QGF], 
+MagProgrLotto.CodMag BCVOUT[CODMAG], 
+MagProgrLotto.CodAreaMag BCVOUT[CODAREA], 
+ArtAnagrafica.MagUm BCVOUT[UMAG]
+from MagAnagrLotti 
+left join MagProgrLotto on 
+MagAnagrLotti.DBGruppo=MagProgrLotto.DBGruppo and 
+MagAnagrLotti.CodArt=MagProgrLotto.CodArt 
+and MagAnagrLotti.VarianteArt=MagProgrLotto.VarianteArt 
+and MagAnagrLotti.RifLottoAlfa=MagProgrLotto.RifLottoAlfab 
+and MagAnagrLotti.RifLottoData=MagProgrLotto.RifLottoData 
+and MagAnagrLotti.RifLottoNum=MagProgrLotto.RifLottoNum 
+INNER JOIN ArtAnagrafica AS ArtAnagrafica ON ArtAnagrafica.CodArt = MagAnagrLotti.CodArt AND ArtAnagrafica.DBGruppo = MagAnagrLotti.DBGruppo 
+where MagAnagrLotti.DBGruppo=BCVIN[GR] and MagAnagrLotti.CodArt=BCVIN[[0.YPK_FIELDS.YPK_ALPHA1$]] 
+--FOALB: estrai lotti recenti (data apertura &amp;gt; oggi - 7 gg.)
+--and MagProgrLotto.QtaGiacenzaUmMag&amp;gt;0
+--and MagAnagrLotti.DataAperturaLotto &amp;gt;= CAST(GETDATE() - 7 AS date)
+order by MagAnagrLotti.DataAperturaLotto desc&lt;/Query&gt;
+	&lt;/RicercaLotti&gt;
+	&lt;Articoli&gt;
+		&lt;QueryRicerca&gt;select CodDb BCVOUT[TDVCDB], VarianteArt BCVOUT[TDVVARART], Libero1 BCVOUT[TDVLIBERO1],  TipoConfDb BCVOUT[TDVTIPDB], ConfAltDb BCVOUT[TDVALTDB], DataDecorrenza BCVOUT[TDVDDE],  DesDb BCVOUT[TDVDES$] from DBaseVersioni where DBaseVersioni.DBGruppo=BCVIN[GR$] and
+(BCVIN[CDB$] = &amp;apos;&amp;apos; or ( BCVIN[CDB$] &amp;lt;&amp;gt;&amp;apos;&amp;apos; and CodDb=BCVIN[CDB$])) 
+order by DesDb&lt;/QueryRicerca&gt;
+	&lt;/Articoli&gt;
+&lt;/Parametri&gt;</ParametriInsert>
+					<CodiceQuery>DB</CodiceQuery>
+				</Attivita>
+				<Attivita>
+					<CodPro>4010</CodPro>
+					<Attivita>15</Attivita>
+					<AttivitaNext>10</AttivitaNext>
+					<Des>Righe Ordini di Spedizione</Des>
+					<Query>SELECT 
+TmpOrdSpedRighe.IdDocumento        BCVOUT[SPRIDD],
+TmpOrdSpedRighe.IdRiga             BCVOUT[SPRIDR],
+TmpOrdSpedRighe.CodArt             BCVOUT[SPRCART$],
+TmpOrdSpedRighe.VarianteArt        BCVOUT[SPRVARART$],
+TmpOrdSpedRighe.RigaSaldata        BCVOUT[SPRSAL],
+TmpOrdSpedRighe.TipoRiga           BCVOUT[SPRTPRC],
+TmpOrdSpedRighe.Des                BCVOUT[SPRDES$],
+TmpOrdSpedRighe.CodMag             BCVOUT[SPRCMAG$],
+TmpOrdSpedRighe.CodAreaMag         BCVOUT[SPRCCOM$],
+TmpOrdSpedRighe.UnitaMisura        BCVOUT[SPRUM$],
+TmpOrdSpedRighe.QtaDaSpedire       BCVOUT[SPRQT],
+TmpOrdSpedRighe.QtaPrelevata       BCVOUT[SPRQTPRE],
+TmpOrdSpedRighe.PrelievoConfermato BCVOUT[SPRFQCONF],
+TmpOrdSpedRighe.NotaInterna        BCVOUT[SPRNOTAINT?],
+TmpOrdSpedRighe.PrelievoConfermato BCVOUT[YPK_STATO],
+case when TmpOrdSpedRighe.TipoRiga&lt;&gt;1 then 1 else 0 end BCVOUT[YPK_BLOCK]
+
+from TmpOrdSpedRighe
+
+where   
+
+TmpOrdSpedRighe.DBGruppo=BCVIN[GR$] and 
+TmpOrdSpedRighe.DBStazione=BCVIN[WS$] and
+TmpOrdSpedRighe.IdDocumento=BCVIN[[0.YPK_EPSPT.PSTIDD]]</Query>
+					<FirmaUltVarData>2017-08-22</FirmaUltVarData>
+					<FirmaUltVarStazione>05</FirmaUltVarStazione>
+					<FirmaUltVarOperatore>SCP</FirmaUltVarOperatore>
+					<NumeroRigheBottoni>5</NumeroRigheBottoni>
+					<NumeroColonneBottoni>3</NumeroColonneBottoni>
+					<AltezzaCelleTerm>5</AltezzaCelleTerm>
+					<NomeStruttDinamica>YPK_TSPR</NomeStruttDinamica>
+					<LabelBottoni>select 
+case when [[SPRTPRC]]=1 then &apos;[[SPRCART$]]-[[SPRDES$]]\n[[SPRUM$]] [[SPRQTPRE]]/[[SPRQT]]&apos;
+else  &apos;[[SPRNOTAINT?]]&apos;
+end</LabelBottoni>
+					<TitoloVideata>Ordine di Spedizione Righe</TitoloVideata>
+					<TipoAzione>E</TipoAzione>
+					<TipoConferma>1</TipoConferma>
+					<TipoAzioneBarcode>1</TipoAzioneBarcode>
+					<CancSelInEntrata>1</CancSelInEntrata>
+					<CodiceEdit>E21</CodiceEdit>
+					<ParametriEdit>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;Parametri&gt;
+	&lt;RicercaClientiFornitori/&gt;
+	&lt;RicercaArea/&gt;
+&lt;/Parametri&gt;</ParametriEdit>
+					<ParametriInsert>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;Parametri&gt;
+	&lt;RicercaLotti&gt;
+		&lt;LabelBottone&gt;Rif. [[MAPRPAD&amp;amp;]] [[MAPDES$]]\n[[UMAG$]] [[QGF]] - [[CODMAG$]] [[CODAREA$]]\n Apertura: [[MAPDAP&amp;amp;]]&lt;/LabelBottone&gt;
+		&lt;Query&gt;select top 3
+MagAnagrLotti.CodArt BCVOUT[MAPCART$],  
+MagAnagrLotti.VarianteArt BCVOUT[MAPVARART$], 
+MagAnagrLotti.RifLottoAlfa BCVOUT[MAPRPA$], 
+MagAnagrLotti.RifLottoData BCVOUT[MAPRPAD&amp;amp;], 
+MagAnagrLotti.RifLottoNum BCVOUT[MAPRPAN], 
+MagAnagrLotti.Des BCVOUT[MAPDES], 
+MagAnagrLotti.DataAperturaLotto BCVOUT[MAPDAP&amp;amp;], 
+MagAnagrLotti.DataScadenzaLotto BCVOUT[MAPDSC], 
+MagProgrLotto.QtaGiacenzaUmMag BCVOUT[QGF], 
+MagProgrLotto.CodMag BCVOUT[CODMAG], 
+MagProgrLotto.CodAreaMag BCVOUT[CODAREA], 
+ArtAnagrafica.MagUm BCVOUT[UMAG]
+from MagAnagrLotti 
+left join MagProgrLotto on 
+MagAnagrLotti.DBGruppo=MagProgrLotto.DBGruppo and 
+MagAnagrLotti.CodArt=MagProgrLotto.CodArt 
+and MagAnagrLotti.VarianteArt=MagProgrLotto.VarianteArt 
+and MagAnagrLotti.RifLottoAlfa=MagProgrLotto.RifLottoAlfab 
+and MagAnagrLotti.RifLottoData=MagProgrLotto.RifLottoData 
+and MagAnagrLotti.RifLottoNum=MagProgrLotto.RifLottoNum 
+INNER JOIN ArtAnagrafica AS ArtAnagrafica ON ArtAnagrafica.CodArt = MagAnagrLotti.CodArt AND ArtAnagrafica.DBGruppo = MagAnagrLotti.DBGruppo 
+where MagAnagrLotti.DBGruppo=BCVIN[GR] and MagAnagrLotti.CodArt=BCVIN[[0.YPK_FIELDS.YPK_ALPHA1$]] 
+--FOALB: estrai lotti recenti (data apertura &amp;gt; oggi - 7 gg.)
+--and MagProgrLotto.QtaGiacenzaUmMag&amp;gt;0
+--and MagAnagrLotti.DataAperturaLotto &amp;gt;= CAST(GETDATE() - 7 AS date)
+order by MagAnagrLotti.DataAperturaLotto desc&lt;/Query&gt;
+	&lt;/RicercaLotti&gt;
+	&lt;Articoli&gt;
+		&lt;QueryRicerca&gt;select CodDb BCVOUT[TDVCDB], VarianteArt BCVOUT[TDVVARART], Libero1 BCVOUT[TDVLIBERO1],  TipoConfDb BCVOUT[TDVTIPDB], ConfAltDb BCVOUT[TDVALTDB], DataDecorrenza BCVOUT[TDVDDE],  DesDb BCVOUT[TDVDES$] from DBaseVersioni where DBaseVersioni.DBGruppo=BCVIN[GR$] and
+(BCVIN[CDB$] = &amp;apos;&amp;apos; or ( BCVIN[CDB$] &amp;lt;&amp;gt;&amp;apos;&amp;apos; and CodDb=BCVIN[CDB$])) 
+order by DesDb&lt;/QueryRicerca&gt;
+	&lt;/Articoli&gt;
+&lt;/Parametri&gt;</ParametriInsert>
+					<CodiceConferma>C17</CodiceConferma>
+					<CodiceCancel>A06</CodiceCancel>
+					<CodiceQuery>DB</CodiceQuery>
+				</Attivita>
+			</ElencoAttivita>
+		</Processo>
+		<Processo>
+			<CodPro>4020</CodPro>
+			<Versione>3.1</Versione>
+			<DesProcesso>Picking senza Selezione Cliente</DesProcesso>
+			<DesEstesaProcesso>Picking con inserimento matricole (Aristarco)</DesEstesaProcesso>
+			<CodCategoria>4</CodCategoria>
+			<Modulo>4</Modulo>
+			<FirmaUltVarData>2017-12-04</FirmaUltVarData>
+			<FirmaUltVarOra>161037</FirmaUltVarOra>
+			<FirmaUltVarStazione>W1</FirmaUltVarStazione>
+			<FirmaUltVarOperatore>ADMIN</FirmaUltVarOperatore>
+			<StatoOrdineSped>2</StatoOrdineSped>
+			<FileImmagine>CARRELLO_01.PNG</FileImmagine>
+			<ElencoAttivita>
+				<Attivita>
+					<CodPro>4020</CodPro>
+					<Attivita>10</Attivita>
+					<Des>Testate Ordini di Spedizione</Des>
+					<Query>SELECT 
+OrdSpedTestata.IdDocumento BCVOUT[PSTIDD],
+OrdSpedTestata.PeriodoRifNumeraz BCVOUT[PSTPNU],
+OrdSpedTestata.CodSerie BCVOUT[PSTSNU],
+OrdSpedTestata.NumRegistraz BCVOUT[PSTNRG],
+OrdSpedTestata.DataRegistraz BCVOUT[PSTDRG&amp;],
+OrdSpedTestata.TipoAnagrafica BCVOUT[PSTCF],
+OrdSpedTestata.CodCliFor BCVOUT[PSTCCF],
+OrdSpedTestata.SpedRagSoc1 BCVOUT[PSTSPRS1$],
+OrdSpedTestata.StatoSpedizione BCVOUT[PSTSTSPED],
+OrdSpedTestata.StatoSpedizione BCVOUT[YPK_STATO]
+from OrdSpedTestata
+where   
+OrdSpedTestata.DBGruppo=BCVIN[GR$] and 
+OrdSpedTestata.StatoSpedizione&lt;4</Query>
+					<FirmaUltVarData>2017-12-04</FirmaUltVarData>
+					<FirmaUltVarOra>161037</FirmaUltVarOra>
+					<FirmaUltVarStazione>W1</FirmaUltVarStazione>
+					<FirmaUltVarOperatore>ADMIN</FirmaUltVarOperatore>
+					<NumeroRigheBottoni>5</NumeroRigheBottoni>
+					<NumeroColonneBottoni>3</NumeroColonneBottoni>
+					<AltezzaCelleTerm>4</AltezzaCelleTerm>
+					<NomeStruttDinamica>YPK_EPSPT</NomeStruttDinamica>
+					<LabelBottoni>select &apos;OdS [[PSTPNU]].[[PSTSNU]].[[PSTNRG]] del [[PSTDRG&amp;]]\n&apos;+
+       RTRIM(&apos;[[PSTSPRS1$]]&apos;)+&apos;\n&apos;+
+case when [[PSTSTSPED]]=0 then &apos;Da rilasciare&apos; 
+     when [[PSTSTSPED]]=1 then &apos;Rilasciato&apos;
+     when [[PSTSTSPED]]=2 then &apos;Prelevato&apos;
+     when [[PSTSTSPED]]=3 then &apos;In Spedizione&apos;
+     when [[PSTSTSPED]]=4 then &apos;Spedito&apos;
+end</LabelBottoni>
+					<TitoloVideata>Ordini di Spedizione</TitoloVideata>
+					<TipoAzione>K</TipoAzione>
+					<CancSelInEntrata>1</CancSelInEntrata>
+					<CodiceSelezione>S07</CodiceSelezione>
+					<ParametriEdit>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;Parametri&gt;
+	&lt;RicercaClientiFornitori/&gt;
+	&lt;RicercaArea/&gt;
+&lt;/Parametri&gt;</ParametriEdit>
+					<ParametriInsert>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;Parametri&gt;
+	&lt;RicercaLotti&gt;
+		&lt;LabelBottone&gt;Rif. [[MAPRPAD&amp;amp;]] [[MAPDES$]]\n[[UMAG$]] [[QGF]] - [[CODMAG$]] [[CODAREA$]]\n Apertura: [[MAPDAP&amp;amp;]]&lt;/LabelBottone&gt;
+		&lt;Query&gt;select top 3
+MagAnagrLotti.CodArt BCVOUT[MAPCART$],  
+MagAnagrLotti.VarianteArt BCVOUT[MAPVARART$], 
+MagAnagrLotti.RifLottoAlfa BCVOUT[MAPRPA$], 
+MagAnagrLotti.RifLottoData BCVOUT[MAPRPAD&amp;amp;], 
+MagAnagrLotti.RifLottoNum BCVOUT[MAPRPAN], 
+MagAnagrLotti.Des BCVOUT[MAPDES], 
+MagAnagrLotti.DataAperturaLotto BCVOUT[MAPDAP&amp;amp;], 
+MagAnagrLotti.DataScadenzaLotto BCVOUT[MAPDSC], 
+MagProgrLotto.QtaGiacenzaUmMag BCVOUT[QGF], 
+MagProgrLotto.CodMag BCVOUT[CODMAG], 
+MagProgrLotto.CodAreaMag BCVOUT[CODAREA], 
+ArtAnagrafica.MagUm BCVOUT[UMAG]
+from MagAnagrLotti 
+left join MagProgrLotto on 
+MagAnagrLotti.DBGruppo=MagProgrLotto.DBGruppo and 
+MagAnagrLotti.CodArt=MagProgrLotto.CodArt 
+and MagAnagrLotti.VarianteArt=MagProgrLotto.VarianteArt 
+and MagAnagrLotti.RifLottoAlfa=MagProgrLotto.RifLottoAlfab 
+and MagAnagrLotti.RifLottoData=MagProgrLotto.RifLottoData 
+and MagAnagrLotti.RifLottoNum=MagProgrLotto.RifLottoNum 
+INNER JOIN ArtAnagrafica AS ArtAnagrafica ON ArtAnagrafica.CodArt = MagAnagrLotti.CodArt AND ArtAnagrafica.DBGruppo = MagAnagrLotti.DBGruppo 
+where MagAnagrLotti.DBGruppo=BCVIN[GR] and MagAnagrLotti.CodArt=BCVIN[[0.YPK_FIELDS.YPK_ALPHA1$]] 
+--FOALB: estrai lotti recenti (data apertura &amp;gt; oggi - 7 gg.)
+--and MagProgrLotto.QtaGiacenzaUmMag&amp;gt;0
+--and MagAnagrLotti.DataAperturaLotto &amp;gt;= CAST(GETDATE() - 7 AS date)
+order by MagAnagrLotti.DataAperturaLotto desc&lt;/Query&gt;
+	&lt;/RicercaLotti&gt;
+	&lt;Articoli&gt;
+		&lt;QueryRicerca&gt;select CodDb BCVOUT[TDVCDB], VarianteArt BCVOUT[TDVVARART], Libero1 BCVOUT[TDVLIBERO1],  TipoConfDb BCVOUT[TDVTIPDB], ConfAltDb BCVOUT[TDVALTDB], DataDecorrenza BCVOUT[TDVDDE],  DesDb BCVOUT[TDVDES$] from DBaseVersioni where DBaseVersioni.DBGruppo=BCVIN[GR$] and
+(BCVIN[CDB$] = &amp;apos;&amp;apos; or ( BCVIN[CDB$] &amp;lt;&amp;gt;&amp;apos;&amp;apos; and CodDb=BCVIN[CDB$])) 
+order by DesDb&lt;/QueryRicerca&gt;
+	&lt;/Articoli&gt;
+&lt;/Parametri&gt;</ParametriInsert>
+					<CodiceQuery>DB</CodiceQuery>
+				</Attivita>
+				<Attivita>
+					<CodPro>4020</CodPro>
+					<Attivita>15</Attivita>
+					<AttivitaNext>10</AttivitaNext>
+					<Des>Righe Ordini di Spedizione</Des>
+					<Query>SELECT 
+TmpOrdSpedRighe.IdDocumento        BCVOUT[SPRIDD],
+TmpOrdSpedRighe.IdRiga             BCVOUT[SPRIDR],
+TmpOrdSpedRighe.CodArt             BCVOUT[SPRCART$],
+TmpOrdSpedRighe.VarianteArt        BCVOUT[SPRVARART$],
+TmpOrdSpedRighe.RigaSaldata        BCVOUT[SPRSAL],
+TmpOrdSpedRighe.TipoRiga           BCVOUT[SPRTPRC],
+TmpOrdSpedRighe.Des                BCVOUT[SPRDES$],
+TmpOrdSpedRighe.CodMag             BCVOUT[SPRCMAG$],
+TmpOrdSpedRighe.CodAreaMag         BCVOUT[SPRCCOM$],
+TmpOrdSpedRighe.UnitaMisura        BCVOUT[SPRUM$],
+TmpOrdSpedRighe.QtaDaSpedire       BCVOUT[SPRQT],
+TmpOrdSpedRighe.QtaPrelevata       BCVOUT[SPRQTPRE],
+TmpOrdSpedRighe.PrelievoConfermato BCVOUT[SPRFQCONF],
+TmpOrdSpedRighe.NotaInterna        BCVOUT[SPRNOTAINT?],
+TmpOrdSpedRighe.PrelievoConfermato BCVOUT[YPK_STATO],
+case when TmpOrdSpedRighe.TipoRiga&lt;&gt;1 then 1 else 0 end BCVOUT[YPK_BLOCK]
+
+from TmpOrdSpedRighe
+
+where   
+
+TmpOrdSpedRighe.DBGruppo=BCVIN[GR$] and 
+TmpOrdSpedRighe.DBStazione=BCVIN[WS$] and
+TmpOrdSpedRighe.IdDocumento=BCVIN[[0.YPK_EPSPT.PSTIDD]]</Query>
+					<FirmaUltVarData>2017-12-04</FirmaUltVarData>
+					<FirmaUltVarOra>161037</FirmaUltVarOra>
+					<FirmaUltVarStazione>W1</FirmaUltVarStazione>
+					<FirmaUltVarOperatore>ADMIN</FirmaUltVarOperatore>
+					<NumeroRigheBottoni>5</NumeroRigheBottoni>
+					<NumeroColonneBottoni>3</NumeroColonneBottoni>
+					<AltezzaCelleTerm>5</AltezzaCelleTerm>
+					<NomeStruttDinamica>YPK_TSPR</NomeStruttDinamica>
+					<LabelBottoni>select 
+case when [[SPRTPRC]]=1 then &apos;[[SPRCART$]]-[[SPRDES$]]\n[[SPRUM$]] [[SPRQTPRE]]/[[SPRQT]]&apos;
+else  &apos;[[SPRNOTAINT?]]&apos;
+end</LabelBottoni>
+					<TitoloVideata>Ordine di Spedizione Righe</TitoloVideata>
+					<TipoAzione>E</TipoAzione>
+					<TipoConferma>1</TipoConferma>
+					<TipoAzioneBarcode>1</TipoAzioneBarcode>
+					<CancSelInEntrata>1</CancSelInEntrata>
+					<CodiceEdit>E21</CodiceEdit>
+					<ParametriEdit>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;Parametri&gt;
+	&lt;RicercaClientiFornitori/&gt;
+	&lt;RicercaArea/&gt;
+&lt;/Parametri&gt;</ParametriEdit>
+					<ParametriInsert>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;Parametri&gt;
+	&lt;RicercaLotti&gt;
+		&lt;LabelBottone&gt;Rif. [[MAPRPAD&amp;amp;]] [[MAPDES$]]\n[[UMAG$]] [[QGF]] - [[CODMAG$]] [[CODAREA$]]\n Apertura: [[MAPDAP&amp;amp;]]&lt;/LabelBottone&gt;
+		&lt;Query&gt;select top 3
+MagAnagrLotti.CodArt BCVOUT[MAPCART$],  
+MagAnagrLotti.VarianteArt BCVOUT[MAPVARART$], 
+MagAnagrLotti.RifLottoAlfa BCVOUT[MAPRPA$], 
+MagAnagrLotti.RifLottoData BCVOUT[MAPRPAD&amp;amp;], 
+MagAnagrLotti.RifLottoNum BCVOUT[MAPRPAN], 
+MagAnagrLotti.Des BCVOUT[MAPDES], 
+MagAnagrLotti.DataAperturaLotto BCVOUT[MAPDAP&amp;amp;], 
+MagAnagrLotti.DataScadenzaLotto BCVOUT[MAPDSC], 
+MagProgrLotto.QtaGiacenzaUmMag BCVOUT[QGF], 
+MagProgrLotto.CodMag BCVOUT[CODMAG], 
+MagProgrLotto.CodAreaMag BCVOUT[CODAREA], 
+ArtAnagrafica.MagUm BCVOUT[UMAG]
+from MagAnagrLotti 
+left join MagProgrLotto on 
+MagAnagrLotti.DBGruppo=MagProgrLotto.DBGruppo and 
+MagAnagrLotti.CodArt=MagProgrLotto.CodArt 
+and MagAnagrLotti.VarianteArt=MagProgrLotto.VarianteArt 
+and MagAnagrLotti.RifLottoAlfa=MagProgrLotto.RifLottoAlfab 
+and MagAnagrLotti.RifLottoData=MagProgrLotto.RifLottoData 
+and MagAnagrLotti.RifLottoNum=MagProgrLotto.RifLottoNum 
+INNER JOIN ArtAnagrafica AS ArtAnagrafica ON ArtAnagrafica.CodArt = MagAnagrLotti.CodArt AND ArtAnagrafica.DBGruppo = MagAnagrLotti.DBGruppo 
+where MagAnagrLotti.DBGruppo=BCVIN[GR] and MagAnagrLotti.CodArt=BCVIN[[0.YPK_FIELDS.YPK_ALPHA1$]] 
+--FOALB: estrai lotti recenti (data apertura &amp;gt; oggi - 7 gg.)
+--and MagProgrLotto.QtaGiacenzaUmMag&amp;gt;0
+--and MagAnagrLotti.DataAperturaLotto &amp;gt;= CAST(GETDATE() - 7 AS date)
+order by MagAnagrLotti.DataAperturaLotto desc&lt;/Query&gt;
+	&lt;/RicercaLotti&gt;
+	&lt;Articoli&gt;
+		&lt;QueryRicerca&gt;select CodDb BCVOUT[TDVCDB], VarianteArt BCVOUT[TDVVARART], Libero1 BCVOUT[TDVLIBERO1],  TipoConfDb BCVOUT[TDVTIPDB], ConfAltDb BCVOUT[TDVALTDB], DataDecorrenza BCVOUT[TDVDDE],  DesDb BCVOUT[TDVDES$] from DBaseVersioni where DBaseVersioni.DBGruppo=BCVIN[GR$] and
+(BCVIN[CDB$] = &amp;apos;&amp;apos; or ( BCVIN[CDB$] &amp;lt;&amp;gt;&amp;apos;&amp;apos; and CodDb=BCVIN[CDB$])) 
+order by DesDb&lt;/QueryRicerca&gt;
+	&lt;/Articoli&gt;
+&lt;/Parametri&gt;</ParametriInsert>
+					<CodiceConferma>C17</CodiceConferma>
+					<CodiceCancel>A06</CodiceCancel>
+					<CodiceQuery>DB</CodiceQuery>
+				</Attivita>
+			</ElencoAttivita>
+		</Processo>
+	</ElencoProcessi>
+</Pickup>
+
