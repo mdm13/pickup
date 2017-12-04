@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Ordine di spedizione"
-date: 9 november 2017
+date: 10 november 2017
 ---
 
 Tra i processi rilevanti per la logistica di Pickup abbiamo la possibilità di gestire il picking negli ordini di spedizione.
