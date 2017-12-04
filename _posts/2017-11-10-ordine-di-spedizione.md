@@ -21,7 +21,7 @@ A differenza di altri processi Pickup, per cui l'interazione con Esolver avviene
 
 L'operazione di picking consiste nell'indicare la quantità prelevata per ciascuna riga dell'ordine di spedizione; questa operazione si può effettuare selezionando la riga e digitando la quantità prelevata, con la possibilità di selezionare le matricole nel caso l'articolo ne preveda la gestione. Nel caso si lavori con l'interfaccia a terminalino è senz'altro preferibile l'utilizzo del barcode, per cui l'operatore legge il codice a barre di un articolo oppure la matricola, e la quantità prelevata viene automaticamente valorizzata per la riga dell'OdS non ancora a saldo.
 
-{% include image.html name="prelilevo-matricola.jpg" caption="Selezione della matricola nel picking su una riga di un ordine di spedizione." %}
+{% include image.html name="prelievo-matricola.jpg" caption="Selezione della matricola nel picking su una riga di un ordine di spedizione." %}
 
 
 {% include download.html name="std_spedizioni_picking.xml" caption="Scarica il processo in formato xml: spedizioni con e senza selezione cliente." %}
