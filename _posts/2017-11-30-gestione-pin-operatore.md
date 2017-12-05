@@ -2,6 +2,7 @@
 layout: post
 title: "Gestione PIN operatore"
 date: 30 november 2017
+tags: risorse
 ---
 
 Tra le attività più comuni nei processi di Pickup troviamo la selezione della risorsa, sia essa risorsa

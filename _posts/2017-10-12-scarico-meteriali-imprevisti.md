@@ -2,6 +2,7 @@
 layout: post
 title: "Scarico materiali imprevisti"
 date: 12 october 2017
+tags: avp
 ---
 
 Nel contesto dell'avanzamento di produzione, è possibile collegare lo scarico di materiali impevisti 
