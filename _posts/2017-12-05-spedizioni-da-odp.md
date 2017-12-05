@@ -2,6 +2,7 @@
 layout: post
 title: "Spedizioni da Ordine di Produzione"
 date: 5 december 2017
+tags: spedizioni ddt odp
 ---
 
 I carrelli di Pickup sono uno strumento molto versatile che si presta a vari tipi di esportazione: su file (per l'acquisizione asincrona), su 
