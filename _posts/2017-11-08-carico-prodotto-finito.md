@@ -2,6 +2,7 @@
 layout: post
 title: "Carico prodotto finito"
 date: 8 november 2017
+tags: avp
 ---
 
 Consideriamo il caso del carico a magazzino del prodotto finito dal riferimento della riga 
