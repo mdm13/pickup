@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Gestione PIN operatore"
+description: "Si descrive come verificare l'identita' della risorsa che accede ad un processo."
 date: 30 november 2017
 tags: risorse
 ---

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Carico prodotto finito"
+description: "Carico del prodotto finito nell'avanzamento di produzione."
 date: 8 november 2017
 tags: avp
 ---

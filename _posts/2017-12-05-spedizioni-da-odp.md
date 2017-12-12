@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "Spedizioni da Ordine di Produzione"
+description: "Viene illustrato l'utilizzo di carrelli per l'esportazione su tabelle per la predisposizione su terminalini, che permette la creazione di DdT e l'evasione degli ordini di vendita. I carrelli sono confezionati dalla lettura del barcode della riga dell'ordine di produzione."
 date: 5 december 2017
-tags: spedizioni
+tags: spedizioni carrelli
 ---
 
-I carrelli di Pickup sono uno strumento molto versatile che si presta a vari tipi di esportazione: su file (per l'acquisizione asincrona), su 
+I carrelli di Pickup sono uno strumento molto versatile che supporta varie tipologie di esportazione: su file (per l'acquisizione asincrona), su 
 tabelle per la predisposizione da terminalini e su tabelle per le proposte di approvvigiornamento. In questo esempio vediamo il caso 
 in cui da un carrello è possibile scrivere sulle tabelle per la predisposizione da terminalini e quindi evadere le righe
 di Ordini di Vendita (OdV) nella creazione di un Documento di Trasporto (DdT).

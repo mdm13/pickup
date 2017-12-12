@@ -1,6 +1,7 @@
 ---
 layout: post
-title: "Ordine di spedizione"
+title: "Picking su ordine di spedizione"
+description: "Gestione del picking di un ordine di spedizione."
 date: 10 november 2017
 tags: spedizioni
 ---
