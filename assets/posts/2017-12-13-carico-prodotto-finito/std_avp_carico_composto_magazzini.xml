@@ -259,6 +259,7 @@ isnull(dbo.pkGetRifOrdProdRiga(BCVIN[GR$],[[TRAIDDOR]],[[TRAIDRORPF]]),&apos;no 
 &apos;\n[[TRACART$]] &apos;+isnull((select DesArt from ArtAnagrafica where DBGruppo=BCVIN[GR$] and CodArt=&apos;[[TRACART$]]&apos;),&apos;no rif. anag. art.&apos;)</LabelBottoni>
 					<TitoloVideata>Registrazioni</TitoloVideata>
 					<TipoAzione>E</TipoAzione>
+					<TipoAzioneSingola>E</TipoAzioneSingola>
 					<TipoConferma>1</TipoConferma>
 					<CancSelInEntrata>1</CancSelInEntrata>
 					<CodiceEdit>E16</CodiceEdit>
