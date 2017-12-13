@@ -22,6 +22,8 @@ Nel terzo esempio (processo numero 9) si prevede la possibilità per l'operatore
 
 {% include image.html name="gestione-manuale-magazzino.jpg" caption="Configurazione della scelta manuale del magazzino per il carico del composto." %}
 
+{% include image.html name="selezione-magazzino-carico-arrow.jpg" caption="Nella videata per l'inserimento della quantità prodotta viene attivato il pulsante per la selezione del magazzino di carico del prodotto finito." %}
+
 
 {% include download.html name="std_avp_carico_composto_magazzini.xml" caption="Scarica i tre processi in formato xml" %}
 
