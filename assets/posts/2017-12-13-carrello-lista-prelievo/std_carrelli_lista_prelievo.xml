@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Pickup>
+	<Versione>
+		<Versione>42.31.16</Versione>
+		<DataVersione>2017-12-12</DataVersione>
+		<OraVersione>1138</OraVersione>
+		<DescrizioneVersione>Risorsa supporto ore e quantità</DescrizioneVersione>
+	</Versione>
+	<ElencoProcessi>
+		<Processo>
+			<CodPro>52</CodPro>
+			<Versione>3.2</Versione>
+			<DesProcesso>RIPARAZIONI Lista prelievo</DesProcesso>
+			<TipoTransazione>16</TipoTransazione>
+			<CodCategoria>6</CodCategoria>
+			<Modulo>6</Modulo>
+			<GruppoDocumento>DDV</GruppoDocumento>
+			<CodTipoDoc>1</CodTipoDoc>
+			<MaterialeImprevisto>1</MaterialeImprevisto>
+			<CartellaEsportDati>PK\</CartellaEsportDati>
+			<PrefissoFile>DDV</PrefissoFile>
+			<EspAutomatica>1</EspAutomatica>
+			<FirmaUltVarData>2017-07-24</FirmaUltVarData>
+			<FirmaUltVarOra>120335</FirmaUltVarOra>
+			<FirmaUltVarStazione>CE</FirmaUltVarStazione>
+			<FirmaUltVarOperatore>SCP</FirmaUltVarOperatore>
+			<StatoOrdineSped>2</StatoOrdineSped>
+			<FileImmagine>Carrello_02.png</FileImmagine>
+			<ElencoAttivita>
+				<Attivita>
+					<CodPro>52</CodPro>
+					<Attivita>5</Attivita>
+					<Des>OPERATORE</Des>
+					<CodQuery>5</CodQuery>
+					<NomeDFX>ERISPROD</NomeDFX>
+					<Query>
+SELECT 
+RisorseProdutAnag.CodRisorsaProd BCVOUT[RIPRACRISP$],  
+RisorseProdutAnag.Des BCVOUT[RIPRADES], 
+RisorseProdutAnag.TipoRisorsaProd BCVOUT[RIPRATRIS], 
+RisorseProdutAnag.CodRisorsaProd BCVOUT[YPK_BARCODE]
+
+FROM RisorseProdutAnag  
+
+WHERE RisorseProdutAnag.DBGruppo=BCVIN[GR$] AND  
+(TipoRisorsaProd=2 OR TipoRisorsaProd=4) AND 
+(RisorseProdutAnag.DataFineValidita=convert(datetime,&apos;01/01/1800&apos;) OR RisorseProdutAnag.DataFineValidita&gt;=GETDATE())</Query>
+					<FirmaUltVarData>2017-07-24</FirmaUltVarData>
+					<FirmaUltVarOra>120335</FirmaUltVarOra>
+					<FirmaUltVarStazione>CE</FirmaUltVarStazione>
+					<FirmaUltVarOperatore>SCP</FirmaUltVarOperatore>
+					<NomeStruttDinamica>YPK_ERISPROD</NomeStruttDinamica>
+					<LabelBottoni>[[RIPRACRISP$]]-[[RIPRADES$]]</LabelBottoni>
+					<TitoloVideata>OPERATORE</TitoloVideata>
+					<TipoAzione>K</TipoAzione>
+					<TipoAzioneBarcode>1</TipoAzioneBarcode>
+					<CancSelInEntrata>1</CancSelInEntrata>
+					<CodiceQuery>DB</CodiceQuery>
+				</Attivita>
+				<Attivita>
+					<CodPro>52</CodPro>
+					<Attivita>10</Attivita>
+					<Des>ELENCO CARRELLI</Des>
+					<CodQuery>250</CodQuery>
+					<NomeDFX>YPK_CART</NomeDFX>
+					<Query>SELECT 
+
+YPKCarrelliTestate.IdCarrello BCVOUT[CATIDD], 
+YPKCarrelliTestate.CodMag BCVOUT[CATCMAG],  
+YPKCarrelliTestate.CodMag1 BCVOUT[CATCMAG1],
+YPKCarrelliTestate.CodMag1 BCVOUT[CATCF],
+YPKCarrelliTestate.CodMag1 BCVOUT[CATCCF],
+YPKCarrelliTestate.FirmaCreazData BCVOUT[CATCDAT&amp;],
+YPKCarrelliTestate.FirmaCreazOra BCVOUT[CATCORA],
+YPKCarrelliTestate.FirmaCreazOperatore BCVOUT[CATCOPE$],
+YPKCarrelliTestate.CodiceRisorsa BCVOUT[CATCRISP$],
+YPKCarrelliTestate.CodCliFor BCVOUT[CATCCF],
+ESV_CLIFOR_DATIANAG.Ragsoc1 BCVOUT[CATCFRS1$]
+
+from YPKCarrelliTestate 
+LEFT JOIN ESV_CLIFOR_DATIANAG ON YPKCarrelliTestate.DBGruppo = ESV_CLIFOR_DATIANAG.DBGruppo AND YPKCarrelliTestate.TipoAnagrafica = ESV_CLIFOR_DATIANAG.TipoAnagrafica AND YPKCarrelliTestate.CodCliFor = ESV_CLIFOR_DATIANAG.CodCliFor 
+
+WHERE
+
+YPKCarrelliTestate.DBGruppo=BCVIN[GR$] and 
+YPKCarrelliTestate.StatoCarrello=0 and 
+YPKCarrelliTestate.CodPro=BCVIN[COD_PRO] and 
+YPKCarrelliTestate.CodiceRisorsa=BCVIN[[0.YPK_ERISPROD.RIPRACRISP$]] 
+
+ORDER by YPKCarrelliTestate.IdCarrello</Query>
+					<FirmaUltVarData>2017-07-24</FirmaUltVarData>
+					<FirmaUltVarOra>120335</FirmaUltVarOra>
+					<FirmaUltVarStazione>CE</FirmaUltVarStazione>
+					<FirmaUltVarOperatore>SCP</FirmaUltVarOperatore>
+					<NumeroRigheBottoni>4</NumeroRigheBottoni>
+					<NumeroColonneBottoni>3</NumeroColonneBottoni>
+					<NomeStruttDinamica>YPK_CART</NomeStruttDinamica>
+					<LabelBottoni>Carrello N. : [[CATIDD]]
+Operatore : [[CATCOPE$]] 
+Risorsa : [[CATCRISP$]]
+Cliente : [[CATCCF]] [[CATCFRS1$]]</LabelBottoni>
+					<TitoloVideata>ELENCO CARRELLI</TitoloVideata>
+					<TipoAzione>KED</TipoAzione>
+					<TipoInserimento>1</TipoInserimento>
+					<CancSelInEntrata>1</CancSelInEntrata>
+					<CodiceSelezione>S02</CodiceSelezione>
+					<CodiceEdit>E04</CodiceEdit>
+					<ParametriEdit>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;Parametri&gt;
+	&lt;RicercaClientiFornitori&gt;
+		&lt;QueryCliFor&gt;select 
+ClientiFornitori.CodCliFor BCVOUT[CFCCF],AnagrGenIndirizzi.RagSoc1 BCVOUT[ASRS1$]  
+from AnagrGenIndirizzi 
+inner join ClientiFornitori on AnagrGenIndirizzi.IdAnagGen=ClientiFornitori.IdAnagGen  and AnagrGenIndirizzi.NumProgr=ClientiFornitori.NumIndirCorrispAmmin  
+where ClientiFornitori.TipoAnagrafica=BCVIN[TIPOANAGRAFICA] and ClientiFornitori.DBGruppo=BCVIN[GR$]&lt;/QueryCliFor&gt;
+	&lt;/RicercaClientiFornitori&gt;
+&lt;/Parametri&gt;</ParametriEdit>
+					<CodiceDelete>D06</CodiceDelete>
+					<CodiceInsert>I08</CodiceInsert>
+					<ParametriInsert>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;Parametri&gt;
+	&lt;RicercaClientiFornitori&gt;
+		&lt;QueryCliFor&gt;select ClientiFornitori.CodCliFor BCVOUT[CFCCF],AnagrGenIndirizzi.RagSoc1 BCVOUT[ASRS1$]  
+from AnagrGenIndirizzi inner join ClientiFornitori on AnagrGenIndirizzi.IdAnagGen=ClientiFornitori.IdAnagGen and AnagrGenIndirizzi.NumProgr=ClientiFornitori.NumIndirCorrispAmmin  
+where ClientiFornitori.TipoAnagrafica=BCVIN[TIPOANAGRAFICA] and ClientiFornitori.DBGruppo=BCVIN[GR$]
+
+ORDER BY CodCliFor&lt;/QueryCliFor&gt;
+	&lt;/RicercaClientiFornitori&gt;
+	&lt;Documento&gt;
+		&lt;GruppoDocumento&gt;DMM&lt;/GruppoDocumento&gt;
+		&lt;TipoDocumento&gt;901&lt;/TipoDocumento&gt;
+	&lt;/Documento&gt;
+&lt;/Parametri&gt;</ParametriInsert>
+					<CodiceQuery>DB</CodiceQuery>
+				</Attivita>
+				<Attivita>
+					<CodPro>52</CodPro>
+					<Attivita>15</Attivita>
+					<Des>CORPO</Des>
+					<FirmaUltVarData>2017-07-24</FirmaUltVarData>
+					<FirmaUltVarOra>120335</FirmaUltVarOra>
+					<FirmaUltVarStazione>CE</FirmaUltVarStazione>
+					<FirmaUltVarOperatore>SCP</FirmaUltVarOperatore>
+					<NomeStruttDinamica>YPK_CARR</NomeStruttDinamica>
+					<LabelBottoni>select &apos;[[CARUM$]] [[CARQT]]\n [[CARCART$]]\n &apos;+isnull((select DesArt from ArtAnagrafica 
+where DBGruppo=BCVIN[GR$] and CodArt=&apos;[[CARCART$]]&apos;),&apos;null&apos;)</LabelBottoni>
+					<TitoloVideata>Contenuto Carrello</TitoloVideata>
+					<TipoAzione>ED</TipoAzione>
+					<TipoConferma>1</TipoConferma>
+					<TipoAzioneBarcode>2</TipoAzioneBarcode>
+					<CancSelInEntrata>1</CancSelInEntrata>
+					<CodiceEdit>E01</CodiceEdit>
+					<CodiceDelete>D02</CodiceDelete>
+					<CodiceInsert>I09</CodiceInsert>
+					<CodiceCancel>A01</CodiceCancel>
+					<CodiceQuery>CR01</CodiceQuery>
+				</Attivita>
+				<Attivita>
+					<CodPro>52</CodPro>
+					<Attivita>20</Attivita>
+					<Des>STAMPA</Des>
+					<EventoAttivita>7</EventoAttivita>
+					<DataFineValidita>2015-11-08</DataFineValidita>
+					<FirmaUltVarData>2017-07-24</FirmaUltVarData>
+					<FirmaUltVarOra>120335</FirmaUltVarOra>
+					<FirmaUltVarStazione>CE</FirmaUltVarStazione>
+					<FirmaUltVarOperatore>SCP</FirmaUltVarOperatore>
+					<NomeReport>PK_CARRELLO_LIS_PRE</NomeReport>
+					<NomeStampante>Sistemi PDF Generator 5.00 (redirected 4)</NomeStampante>
+					<TipoStampante>W</TipoStampante>
+					<TipoAttivita>3</TipoAttivita>
+					<TipoAzione>K</TipoAzione>
+					<CodiceStampa>S02</CodiceStampa>
+				</Attivita>
+				<Attivita>
+					<CodPro>52</CodPro>
+					<Attivita>25</Attivita>
+					<Des>CONFERMA</Des>
+					<FirmaUltVarData>2017-07-24</FirmaUltVarData>
+					<FirmaUltVarOra>120335</FirmaUltVarOra>
+					<FirmaUltVarStazione>CE</FirmaUltVarStazione>
+					<FirmaUltVarOperatore>SCP</FirmaUltVarOperatore>
+					<TipoAttivita>1</TipoAttivita>
+					<NomeStruttDinamica>YPK_CARR</NomeStruttDinamica>
+					<CodiceCustom>C04</CodiceCustom>
+				</Attivita>
+				<Attivita>
+					<CodPro>52</CodPro>
+					<Attivita>30</Attivita>
+					<Des>APERTURA</Des>
+					<FirmaUltVarData>2017-07-24</FirmaUltVarData>
+					<FirmaUltVarOra>120335</FirmaUltVarOra>
+					<FirmaUltVarStazione>CE</FirmaUltVarStazione>
+					<FirmaUltVarOperatore>SCP</FirmaUltVarOperatore>
+					<TipoAttivita>4</TipoAttivita>
+					<NomeStruttDinamica>YPK_CARR</NomeStruttDinamica>
+					<CodiceCustom>C06</CodiceCustom>
+					<CodiceTrans>T03</CodiceTrans>
+				</Attivita>
+				<Attivita>
+					<CodPro>52</CodPro>
+					<Attivita>35</Attivita>
+					<Des>ESPORTAZIONE</Des>
+					<FirmaUltVarData>2017-07-24</FirmaUltVarData>
+					<FirmaUltVarOra>143740</FirmaUltVarOra>
+					<FirmaUltVarStazione>CE</FirmaUltVarStazione>
+					<FirmaUltVarOperatore>SCP</FirmaUltVarOperatore>
+					<TipoAttivita>5</TipoAttivita>
+					<CodiceExport>E02</CodiceExport>
+					<PrefissoExport>DMM</PrefissoExport>
+					<CartellaExpDati>PK\</CartellaExpDati>
+				</Attivita>
+			</ElencoAttivita>
+		</Processo>
+	</ElencoProcessi>
+</Pickup>
+
