@@ -33,17 +33,17 @@
 					<Des>OPERATORE</Des>
 					<CodQuery>5</CodQuery>
 					<NomeDFX>ERISPROD</NomeDFX>
-					<Query>
-SELECT 
-RisorseProdutAnag.CodRisorsaProd BCVOUT[RIPRACRISP$],  
-RisorseProdutAnag.Des BCVOUT[RIPRADES], 
-RisorseProdutAnag.TipoRisorsaProd BCVOUT[RIPRATRIS], 
-RisorseProdutAnag.CodRisorsaProd BCVOUT[YPK_BARCODE]
-
-FROM RisorseProdutAnag  
-
-WHERE RisorseProdutAnag.DBGruppo=BCVIN[GR$] AND  
-(TipoRisorsaProd=2 OR TipoRisorsaProd=4) AND 
+					<Query>
+SELECT 
+RisorseProdutAnag.CodRisorsaProd BCVOUT[RIPRACRISP$],  
+RisorseProdutAnag.Des BCVOUT[RIPRADES], 
+RisorseProdutAnag.TipoRisorsaProd BCVOUT[RIPRATRIS], 
+RisorseProdutAnag.CodRisorsaProd BCVOUT[YPK_BARCODE]
+
+FROM RisorseProdutAnag  
+
+WHERE RisorseProdutAnag.DBGruppo=BCVIN[GR$] AND  
+(TipoRisorsaProd=2 OR TipoRisorsaProd=4) AND 
 (RisorseProdutAnag.DataFineValidita=convert(datetime,&apos;01/01/1800&apos;) OR RisorseProdutAnag.DataFineValidita&gt;=GETDATE())</Query>
 					<FirmaUltVarData>2017-07-24</FirmaUltVarData>
 					<FirmaUltVarOra>120335</FirmaUltVarOra>
@@ -63,30 +63,30 @@ WHERE RisorseProdutAnag.DBGruppo=BCVIN[GR$] AND
 					<Des>ELENCO CARRELLI</Des>
 					<CodQuery>250</CodQuery>
 					<NomeDFX>YPK_CART</NomeDFX>
-					<Query>SELECT 
-
-YPKCarrelliTestate.IdCarrello BCVOUT[CATIDD], 
-YPKCarrelliTestate.CodMag BCVOUT[CATCMAG],  
-YPKCarrelliTestate.CodMag1 BCVOUT[CATCMAG1],
-YPKCarrelliTestate.CodMag1 BCVOUT[CATCF],
-YPKCarrelliTestate.CodMag1 BCVOUT[CATCCF],
-YPKCarrelliTestate.FirmaCreazData BCVOUT[CATCDAT&amp;],
-YPKCarrelliTestate.FirmaCreazOra BCVOUT[CATCORA],
-YPKCarrelliTestate.FirmaCreazOperatore BCVOUT[CATCOPE$],
-YPKCarrelliTestate.CodiceRisorsa BCVOUT[CATCRISP$],
-YPKCarrelliTestate.CodCliFor BCVOUT[CATCCF],
-ESV_CLIFOR_DATIANAG.Ragsoc1 BCVOUT[CATCFRS1$]
-
-from YPKCarrelliTestate 
-LEFT JOIN ESV_CLIFOR_DATIANAG ON YPKCarrelliTestate.DBGruppo = ESV_CLIFOR_DATIANAG.DBGruppo AND YPKCarrelliTestate.TipoAnagrafica = ESV_CLIFOR_DATIANAG.TipoAnagrafica AND YPKCarrelliTestate.CodCliFor = ESV_CLIFOR_DATIANAG.CodCliFor 
-
-WHERE
-
-YPKCarrelliTestate.DBGruppo=BCVIN[GR$] and 
-YPKCarrelliTestate.StatoCarrello=0 and 
-YPKCarrelliTestate.CodPro=BCVIN[COD_PRO] and 
-YPKCarrelliTestate.CodiceRisorsa=BCVIN[[0.YPK_ERISPROD.RIPRACRISP$]] 
-
+					<Query>SELECT 
+
+YPKCarrelliTestate.IdCarrello BCVOUT[CATIDD], 
+YPKCarrelliTestate.CodMag BCVOUT[CATCMAG],  
+YPKCarrelliTestate.CodMag1 BCVOUT[CATCMAG1],
+YPKCarrelliTestate.CodMag1 BCVOUT[CATCF],
+YPKCarrelliTestate.CodMag1 BCVOUT[CATCCF],
+YPKCarrelliTestate.FirmaCreazData BCVOUT[CATCDAT&amp;],
+YPKCarrelliTestate.FirmaCreazOra BCVOUT[CATCORA],
+YPKCarrelliTestate.FirmaCreazOperatore BCVOUT[CATCOPE$],
+YPKCarrelliTestate.CodiceRisorsa BCVOUT[CATCRISP$],
+YPKCarrelliTestate.CodCliFor BCVOUT[CATCCF],
+ESV_CLIFOR_DATIANAG.Ragsoc1 BCVOUT[CATCFRS1$]
+
+from YPKCarrelliTestate 
+LEFT JOIN ESV_CLIFOR_DATIANAG ON YPKCarrelliTestate.DBGruppo = ESV_CLIFOR_DATIANAG.DBGruppo AND YPKCarrelliTestate.TipoAnagrafica = ESV_CLIFOR_DATIANAG.TipoAnagrafica AND YPKCarrelliTestate.CodCliFor = ESV_CLIFOR_DATIANAG.CodCliFor 
+
+WHERE
+
+YPKCarrelliTestate.DBGruppo=BCVIN[GR$] and 
+YPKCarrelliTestate.StatoCarrello=0 and 
+YPKCarrelliTestate.CodPro=BCVIN[COD_PRO] and 
+YPKCarrelliTestate.CodiceRisorsa=BCVIN[[0.YPK_ERISPROD.RIPRACRISP$]] 
+
 ORDER by YPKCarrelliTestate.IdCarrello</Query>
 					<FirmaUltVarData>2017-07-24</FirmaUltVarData>
 					<FirmaUltVarOra>120335</FirmaUltVarOra>
@@ -95,9 +95,9 @@ ORDER by YPKCarrelliTestate.IdCarrello</Query>
 					<NumeroRigheBottoni>4</NumeroRigheBottoni>
 					<NumeroColonneBottoni>3</NumeroColonneBottoni>
 					<NomeStruttDinamica>YPK_CART</NomeStruttDinamica>
-					<LabelBottoni>Carrello N. : [[CATIDD]]
-Operatore : [[CATCOPE$]] 
-Risorsa : [[CATCRISP$]]
+					<LabelBottoni>Carrello N. : [[CATIDD]]
+Operatore : [[CATCOPE$]] 
+Risorsa : [[CATCRISP$]]
 Cliente : [[CATCCF]] [[CATCFRS1$]]</LabelBottoni>
 					<TitoloVideata>ELENCO CARRELLI</TitoloVideata>
 					<TipoAzione>KED</TipoAzione>
@@ -105,31 +105,31 @@ Cliente : [[CATCCF]] [[CATCFRS1$]]</LabelBottoni>
 					<CancSelInEntrata>1</CancSelInEntrata>
 					<CodiceSelezione>S02</CodiceSelezione>
 					<CodiceEdit>E04</CodiceEdit>
-					<ParametriEdit>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
-&lt;Parametri&gt;
-	&lt;RicercaClientiFornitori&gt;
-		&lt;QueryCliFor&gt;select 
-ClientiFornitori.CodCliFor BCVOUT[CFCCF],AnagrGenIndirizzi.RagSoc1 BCVOUT[ASRS1$]  
-from AnagrGenIndirizzi 
-inner join ClientiFornitori on AnagrGenIndirizzi.IdAnagGen=ClientiFornitori.IdAnagGen  and AnagrGenIndirizzi.NumProgr=ClientiFornitori.NumIndirCorrispAmmin  
-where ClientiFornitori.TipoAnagrafica=BCVIN[TIPOANAGRAFICA] and ClientiFornitori.DBGruppo=BCVIN[GR$]&lt;/QueryCliFor&gt;
-	&lt;/RicercaClientiFornitori&gt;
+					<ParametriEdit>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;Parametri&gt;
+	&lt;RicercaClientiFornitori&gt;
+		&lt;QueryCliFor&gt;select 
+ClientiFornitori.CodCliFor BCVOUT[CFCCF],AnagrGenIndirizzi.RagSoc1 BCVOUT[ASRS1$]  
+from AnagrGenIndirizzi 
+inner join ClientiFornitori on AnagrGenIndirizzi.IdAnagGen=ClientiFornitori.IdAnagGen  and AnagrGenIndirizzi.NumProgr=ClientiFornitori.NumIndirCorrispAmmin  
+where ClientiFornitori.TipoAnagrafica=BCVIN[TIPOANAGRAFICA] and ClientiFornitori.DBGruppo=BCVIN[GR$]&lt;/QueryCliFor&gt;
+	&lt;/RicercaClientiFornitori&gt;
 &lt;/Parametri&gt;</ParametriEdit>
 					<CodiceDelete>D06</CodiceDelete>
 					<CodiceInsert>I08</CodiceInsert>
-					<ParametriInsert>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
-&lt;Parametri&gt;
-	&lt;RicercaClientiFornitori&gt;
-		&lt;QueryCliFor&gt;select ClientiFornitori.CodCliFor BCVOUT[CFCCF],AnagrGenIndirizzi.RagSoc1 BCVOUT[ASRS1$]  
-from AnagrGenIndirizzi inner join ClientiFornitori on AnagrGenIndirizzi.IdAnagGen=ClientiFornitori.IdAnagGen and AnagrGenIndirizzi.NumProgr=ClientiFornitori.NumIndirCorrispAmmin  
-where ClientiFornitori.TipoAnagrafica=BCVIN[TIPOANAGRAFICA] and ClientiFornitori.DBGruppo=BCVIN[GR$]
-
-ORDER BY CodCliFor&lt;/QueryCliFor&gt;
-	&lt;/RicercaClientiFornitori&gt;
-	&lt;Documento&gt;
-		&lt;GruppoDocumento&gt;DMM&lt;/GruppoDocumento&gt;
-		&lt;TipoDocumento&gt;901&lt;/TipoDocumento&gt;
-	&lt;/Documento&gt;
+					<ParametriInsert>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;Parametri&gt;
+	&lt;RicercaClientiFornitori&gt;
+		&lt;QueryCliFor&gt;select ClientiFornitori.CodCliFor BCVOUT[CFCCF],AnagrGenIndirizzi.RagSoc1 BCVOUT[ASRS1$]  
+from AnagrGenIndirizzi inner join ClientiFornitori on AnagrGenIndirizzi.IdAnagGen=ClientiFornitori.IdAnagGen and AnagrGenIndirizzi.NumProgr=ClientiFornitori.NumIndirCorrispAmmin  
+where ClientiFornitori.TipoAnagrafica=BCVIN[TIPOANAGRAFICA] and ClientiFornitori.DBGruppo=BCVIN[GR$]
+
+ORDER BY CodCliFor&lt;/QueryCliFor&gt;
+	&lt;/RicercaClientiFornitori&gt;
+	&lt;Documento&gt;
+		&lt;GruppoDocumento&gt;DMM&lt;/GruppoDocumento&gt;
+		&lt;TipoDocumento&gt;901&lt;/TipoDocumento&gt;
+	&lt;/Documento&gt;
 &lt;/Parametri&gt;</ParametriInsert>
 					<CodiceQuery>DB</CodiceQuery>
 				</Attivita>
@@ -142,7 +142,7 @@ ORDER BY CodCliFor&lt;/QueryCliFor&gt;
 					<FirmaUltVarStazione>CE</FirmaUltVarStazione>
 					<FirmaUltVarOperatore>SCP</FirmaUltVarOperatore>
 					<NomeStruttDinamica>YPK_CARR</NomeStruttDinamica>
-					<LabelBottoni>select &apos;[[CARUM$]] [[CARQT]]\n [[CARCART$]]\n &apos;+isnull((select DesArt from ArtAnagrafica 
+					<LabelBottoni>select &apos;[[CARUM$]] [[CARQT]]\n [[CARCART$]]\n &apos;+isnull((select DesArt from ArtAnagrafica 
 where DBGruppo=BCVIN[GR$] and CodArt=&apos;[[CARCART$]]&apos;),&apos;null&apos;)</LabelBottoni>
 					<TitoloVideata>Contenuto Carrello</TitoloVideata>
 					<TipoAzione>ED</TipoAzione>
@@ -183,32 +183,6 @@ where DBGruppo=BCVIN[GR$] and CodArt=&apos;[[CARCART$]]&apos;),&apos;null&apos;)
 					<TipoAttivita>1</TipoAttivita>
 					<NomeStruttDinamica>YPK_CARR</NomeStruttDinamica>
 					<CodiceCustom>C04</CodiceCustom>
-				</Attivita>
-				<Attivita>
-					<CodPro>52</CodPro>
-					<Attivita>30</Attivita>
-					<Des>APERTURA</Des>
-					<FirmaUltVarData>2017-07-24</FirmaUltVarData>
-					<FirmaUltVarOra>120335</FirmaUltVarOra>
-					<FirmaUltVarStazione>CE</FirmaUltVarStazione>
-					<FirmaUltVarOperatore>SCP</FirmaUltVarOperatore>
-					<TipoAttivita>4</TipoAttivita>
-					<NomeStruttDinamica>YPK_CARR</NomeStruttDinamica>
-					<CodiceCustom>C06</CodiceCustom>
-					<CodiceTrans>T03</CodiceTrans>
-				</Attivita>
-				<Attivita>
-					<CodPro>52</CodPro>
-					<Attivita>35</Attivita>
-					<Des>ESPORTAZIONE</Des>
-					<FirmaUltVarData>2017-07-24</FirmaUltVarData>
-					<FirmaUltVarOra>143740</FirmaUltVarOra>
-					<FirmaUltVarStazione>CE</FirmaUltVarStazione>
-					<FirmaUltVarOperatore>SCP</FirmaUltVarOperatore>
-					<TipoAttivita>5</TipoAttivita>
-					<CodiceExport>E02</CodiceExport>
-					<PrefissoExport>DMM</PrefissoExport>
-					<CartellaExpDati>PK\</CartellaExpDati>
 				</Attivita>
 			</ElencoAttivita>
 		</Processo>
