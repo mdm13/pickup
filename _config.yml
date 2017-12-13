@@ -14,5 +14,5 @@ scponline: 'http://www.scponline.it'
 pickup: 'Pickup'
 
 # Details for the RSS feed generator
-url:            'https://mdm13.github.com/pickup'
+url:            'https://mdm13.github.com'
 author:         'SCP srl'
