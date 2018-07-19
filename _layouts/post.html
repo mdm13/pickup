@@ -24,6 +24,9 @@ post_class: post-template
                     {{ page.categories | array_to_sentence_string | prepend: 'on ' }}
                 {% endif %}
             </section>
+            <section class="post-meta">
+                {{page.rifdemo}}
+            </section>
         </header>
         
         <span>[
