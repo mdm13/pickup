@@ -7,7 +7,7 @@ tags: avp stampa
 rifdemo: DEMOGLA_1400
 ---
 
-Presentiamo, in questo esempio, la possibilità di effettuare una registrazione di avanzamento con stampa 
+Presentiamo in questo esempio, la possibilità di effettuare una registrazione di avanzamento con stampa 
 del cartellino di lavoro. La registrazione delle ore è in modalità start-stop, per cui il tempo viene calcolato 
 automaticamente. La prima attività prevede la selezione della risorsa umana.
 Nel caso non ci siano transazioni aperte dalla risorsa selezionata, viene richiesta la selezione della fase il 
